@@ -1,0 +1,12 @@
+# CSC110 Fall 2020: Modules required to run this project.
+
+# Testing and code checking
+hypothesis
+pytest
+python-ta
+
+# Graphics and data visualization
+plotly
+numpy
+pandas
+dash==1.17.0

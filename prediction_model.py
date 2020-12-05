@@ -3,7 +3,7 @@ Modelling the data with a regression, and displaying a line graph showing the ch
 and displaying predicted values for 20 years into the future.
 https://www.analyticsvidhya.com/blog/2015/09/build-predictive-model-10-minutes-python/
 """
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Any
 import pandas as pd
 from data_cleaning import read_csv_data
 import numpy as np
@@ -25,7 +25,7 @@ dataset = read_csv_data("pacificocean_sea_level.csv")
 # DISPLAY
 ##########
 def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
-    """Display a graph of the sea level change over the years. NOT a predictive model
+    """Return a graph of the sea level change over the years. NOT a predictive model
     """
     years = []
     levels = []
@@ -46,4 +46,8 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
 
     return fig
 
+
 # make subplot method which will display the figure with the data predictions
+def graph_estimations(data: Dict[str, List[Tuple]]) -> go.Figure():
+    """Return a graph modelled to display 20 year predictions
+    """
