@@ -1,10 +1,12 @@
 """
 Display the map which shows the susceptible flooding regions - includes interactive features
-Use Dash to do this - GeoPandas seems useful too
+GeoPandas seems useful too
 Here we will interpret the data with our own logic/calculations
 MAP DATA FROM
 https://simplemaps.com/data/canada-cities
 """
+import python_ta
+from python_ta import contracts
 import plotly.express as px
 # import geopandas as gpd
 import plotly.graph_objects as go  # or plotly.express as px
@@ -26,4 +28,13 @@ def display_map(data: Any) -> go.Figure():
     return fig
 
 
+if __name__ == '__main__':
 
+    python_ta.check_all(config={
+        'extra-imports': [],  # the names (strs) of imported modules
+        'allowed-io': [],  # the names (strs) of functions that call print/open/input
+        'max-line-length': 100,
+        'disable': ['R1705', 'C0200']
+
+    })
+    python_ta.contracts.check_all_contracts()

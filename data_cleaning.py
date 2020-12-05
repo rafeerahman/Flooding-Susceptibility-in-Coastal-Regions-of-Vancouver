@@ -1,6 +1,9 @@
 """
 File for data manipulations: cleaning, creating training and testing datasets
 """
+import python_ta
+from python_ta import contracts
+
 import csv
 from typing import Dict, List, Tuple
 import sklearn
@@ -36,5 +39,15 @@ def read_csv_data(filepath: str) -> Dict[str, List[Tuple]]:
 
     return data_sea_level
 
+
 # clean map data - restrict to BC only and extract vancouver
 
+if __name__ == '__main__':
+    python_ta.check_all(config={
+        'extra-imports': [],  # the names (strs) of imported modules
+        'allowed-io': [],  # the names (strs) of functions that call print/open/input
+        'max-line-length': 100,
+        'disable': ['R1705', 'C0200']
+
+    })
+    python_ta.contracts.check_all_contracts()

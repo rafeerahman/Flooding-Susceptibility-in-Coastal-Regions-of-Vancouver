@@ -13,9 +13,7 @@ import dash_html_components as html
 from prediction_model import display_graph, dataset
 from map_visualization import display_map, map
 
-
 if __name__ == '__main__':
-
     app = dash.Dash()
     app.layout = html.Div([
         dcc.Graph(figure=display_map(map)),
