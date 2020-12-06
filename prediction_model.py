@@ -14,7 +14,6 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-
 # Create the regular dataset
 dataset = read_csv_data("pacificocean_sea_level.csv")
 
@@ -24,6 +23,12 @@ dataset = read_csv_data("pacificocean_sea_level.csv")
 #############################################
 
 # we want to somehow predict the sea level values 20 years from now and in the past
+
+# make subplot method which will display the figure with the data predictions
+def graph_estimations(data: Dict[str, List[Tuple]]) -> go.Figure():
+    """Return a graph modelled to display 20 year predictions
+    """
+
 
 ##########
 # DISPLAY
@@ -49,12 +54,6 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
                       yaxis_title='Sea Level Anomaly (mm)')
 
     return fig
-
-
-# make subplot method which will display the figure with the data predictions
-def graph_estimations(data: Dict[str, List[Tuple]]) -> go.Figure():
-    """Return a graph modelled to display 20 year predictions
-    """
 
 
 if __name__ == '__main__':
