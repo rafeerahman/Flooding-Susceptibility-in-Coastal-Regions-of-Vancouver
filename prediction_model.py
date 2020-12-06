@@ -3,7 +3,10 @@ Modelling the data with a regression, and displaying a line graph showing the ch
 and displaying predicted values for 20 years into the future.
 https://www.analyticsvidhya.com/blog/2015/09/build-predictive-model-10-minutes-python/
 """
-from typing import Dict, List, Tuple
+import python_ta
+from python_ta import contracts
+
+from typing import Dict, List, Tuple, Any
 import pandas as pd
 from data_cleaning import read_csv_data
 import numpy as np
@@ -21,11 +24,17 @@ dataset = read_csv_data("pacificocean_sea_level.csv")
 
 # we want to somehow predict the sea level values 20 years from now and in the past
 
+# make subplot method which will display the figure with the data predictions
+def graph_estimations(data: Dict[str, List[Tuple]]) -> go.Figure():
+    """Return a graph modelled to display 20 year predictions
+    """
+
+
 ##########
 # DISPLAY
 ##########
 def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
-    """Display a graph of the sea level change over the years. NOT a predictive model
+    """Return a graph of the sea level change over the years. NOT a predictive model
     """
     years = []
     levels = []
@@ -46,4 +55,13 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
 
     return fig
 
-# make subplot method which will display the figure with the data predictions
+
+if __name__ == '__main__':
+    python_ta.check_all(config={
+        'extra-imports': [],  # the names (strs) of imported modules
+        'allowed-io': [],  # the names (strs) of functions that call print/open/input
+        'max-line-length': 100,
+        'disable': ['R1705', 'C0200']
+
+    })
+    python_ta.contracts.check_all_contracts()
