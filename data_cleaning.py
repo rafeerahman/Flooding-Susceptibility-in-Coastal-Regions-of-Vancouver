@@ -63,9 +63,6 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tupl
 
     return new_data
 
-
-# clean map data - restrict to BC only and extract vancouver
-
 if __name__ == '__main__':
     # python_ta.check_all(config={
     #     'extra-imports': [],  # the names (strs) of imported modules
