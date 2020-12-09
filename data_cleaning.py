@@ -11,8 +11,9 @@ from sklearn import model_selection
 import random
 
 
-# read_csv_data('pacificocean_sea_level.csv')
-
+###########
+# BASE DATA
+###########
 def read_csv_data(filepath: str) -> Dict[str, List[Tuple[str, float]]]:
     """ Reads the csv data for the average vancouver sea level from 1992 to 2020.
         Filter "NA" values which were set to ''.
@@ -41,10 +42,11 @@ def read_csv_data(filepath: str) -> Dict[str, List[Tuple[str, float]]]:
     return data_sea_level
 
 
+################
 # CONDENSED DATA
-# get the annual sea level means into a new dataset
+################
 def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tuple[str, float]]]:
-    """Return a new dataset with the annual means grouped
+    """Return a new dataset with the annual means calculated
     """
     new_data = {'topex_pos': [], 'jason-1': [], 'jason-2': [], 'jason-3': []}
 
@@ -62,6 +64,12 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tupl
             new_data[satellite].append((year, annual_mean))
 
     return new_data
+
+
+##################################################################
+# Creating a dataframe with predicted values - using KNN algorithm
+##################################################################
+
 
 if __name__ == '__main__':
     # python_ta.check_all(config={

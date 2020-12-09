@@ -8,7 +8,6 @@ https://simplemaps.com/data/canada-cities
 import python_ta
 from python_ta import contracts
 import plotly.express as px
-# import geopandas as gpd
 import plotly.graph_objects as go  # or plotly.express as px
 
 import pandas as pd

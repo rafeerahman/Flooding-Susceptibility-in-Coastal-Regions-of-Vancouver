@@ -10,8 +10,7 @@ RUN THIS FILE TO SEE DASH VISUALIZATION
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from prediction_model import display_graph, display_annual_mean, dataset, condensed
-from plotly.subplots import make_subplots
+from prediction_model import *
 from map_visualization import display_map, map
 from dash.dependencies import Input, Output
 
