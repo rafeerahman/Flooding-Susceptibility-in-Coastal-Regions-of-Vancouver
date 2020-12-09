@@ -57,6 +57,27 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
     return fig
 
 
+def display_annual_mean(data: Dict[str, List[Tuple]]) -> go.Figure():
+    """Return a graph of the sea level change over the years. NOT a predictive model
+    """
+    years = []
+    levels = []
+    for row in data:
+        years.append([pair[0] for pair in data[row]])
+        levels.append([pair[1] for pair in data[row]])
+
+    years = np.concatenate(years)
+    levels = np.concatenate(levels)
+
+    fig = px.scatter(x=years, y=levels)
+
+    fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1972 - 2040)',
+                      xaxis_title='Year',
+                      yaxis_title='Sea Level Anomaly (mm)')
+
+    return fig
+
+
 if __name__ == '__main__':
     python_ta.check_all(config={
         'extra-imports': [],  # the names (strs) of imported modules

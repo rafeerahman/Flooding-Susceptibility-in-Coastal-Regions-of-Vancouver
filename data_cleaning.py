@@ -50,12 +50,12 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tupl
 
     for satellite in data:
         years = {pair[0][0:4] for pair in data[satellite]}
-        count = 0
-        annual_mean = 0
 
         for year in years:
+            annual_mean = 0
+            count = 0
             for pair in data[satellite]:
-                if year in pair[0]:
+                if year == pair[0][0:4]:
                     annual_mean += pair[1]
                     count += 1
             annual_mean /= count

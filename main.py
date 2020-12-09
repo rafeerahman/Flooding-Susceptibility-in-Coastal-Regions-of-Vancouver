@@ -10,7 +10,7 @@ RUN THIS FILE TO SEE DASH VISUALIZATION
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from prediction_model import display_graph, dataset, condensed
+from prediction_model import display_graph, display_annual_mean, dataset, condensed
 from plotly.subplots import make_subplots
 from map_visualization import display_map, map
 from dash.dependencies import Input, Output
@@ -39,7 +39,7 @@ if __name__ == '__main__':
                 dcc.Graph(figure=display_graph(dataset))
             ], className="six columns"),
             html.Div([
-                dcc.Graph(figure=display_graph(condensed))
+                dcc.Graph(figure=display_annual_mean(condensed))
             ], className="six columns"),
         ])
     ])
