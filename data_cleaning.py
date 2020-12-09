@@ -13,10 +13,11 @@ import random
 
 # read_csv_data('pacificocean_sea_level.csv')
 
-def read_csv_data(filepath: str) -> Dict[str, List[Tuple]]:
+def read_csv_data(filepath: str) -> Dict[str, List[Tuple[str, float]]]:
     """ Reads the csv data for the average vancouver sea level from 1992 to 2020.
         Filter "NA" values which were set to ''.
-        Returns a dictionary with the keys year and sea level, where year corresponds to the list of years,
+        Returns a dictionary with the keys year and sea level,
+        where year corresponds to the list of years,
         and sea level corresponds to a list of sea level data in mm for each year in the list.
     """
     with open(filepath) as file:
@@ -40,14 +41,37 @@ def read_csv_data(filepath: str) -> Dict[str, List[Tuple]]:
     return data_sea_level
 
 
+# CONDENSED DATA
+# get the annual sea level means into a new dataset
+def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tuple[str, float]]]:
+    """Return a new dataset with the annual means grouped
+    """
+    new_data = {'topex_pos': [], 'jason-1': [], 'jason-2': [], 'jason-3': []}
+
+    for satellite in data:
+        years = {pair[0][0:4] for pair in data[satellite]}
+        count = 0
+        annual_mean = 0
+
+        for year in years:
+            for pair in data[satellite]:
+                if year in pair[0]:
+                    annual_mean += pair[1]
+                    count += 1
+            annual_mean /= count
+            new_data[satellite].append((year, annual_mean))
+
+    return new_data
+
+
 # clean map data - restrict to BC only and extract vancouver
 
 if __name__ == '__main__':
-    python_ta.check_all(config={
-        'extra-imports': [],  # the names (strs) of imported modules
-        'allowed-io': [],  # the names (strs) of functions that call print/open/input
-        'max-line-length': 100,
-        'disable': ['R1705', 'C0200']
-
-    })
+    # python_ta.check_all(config={
+    #     'extra-imports': [],  # the names (strs) of imported modules
+    #     'allowed-io': [],  # the names (strs) of functions that call print/open/input
+    #     'max-line-length': 100,
+    #     'disable': ['R1705', 'C0200']
+    #
+    # })
     python_ta.contracts.check_all_contracts()

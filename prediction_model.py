@@ -8,7 +8,7 @@ from python_ta import contracts
 
 from typing import Dict, List, Tuple, Any
 import pandas as pd
-from data_cleaning import read_csv_data
+from data_cleaning import read_csv_data, group_means
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
@@ -16,6 +16,7 @@ from plotly.subplots import make_subplots
 
 # Create the regular dataset
 dataset = read_csv_data("pacificocean_sea_level.csv")
+condensed = group_means(dataset)
 
 
 #############################################
