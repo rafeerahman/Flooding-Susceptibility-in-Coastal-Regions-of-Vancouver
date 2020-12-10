@@ -13,9 +13,10 @@ import pandas as pd
 from typing import Any
 from canada_dsm import *
 
-map = pd.read_csv('vancouver.csv')
+data_map = pd.read_csv('vancouver.csv')
 
 
+# get DF with lat, lon, year, slr, elevation
 def display_map(data: Any) -> go.Figure():
     """Displays the map of the given data
     """

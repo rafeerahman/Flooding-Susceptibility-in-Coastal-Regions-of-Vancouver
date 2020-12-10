@@ -11,7 +11,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from prediction_model import *
-from map_visualization import display_map, map
+from map_visualization import *
 from dash.dependencies import Input, Output
 
 if __name__ == '__main__':
