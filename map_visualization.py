@@ -21,28 +21,23 @@ def display_map(data: Any) -> go.Figure():
     """Displays the map of the given data
     """
     # Main point
-    fig = px.scatter_mapbox(data, lat="lat", lon="lng",
-                            color_discrete_sequence=["fuchsia"], zoom=3)
+    fig = px.scatter_mapbox(data, lat='lat', lon='lng',
+                            color_discrete_sequence=['fuchsia'], zoom=3)
     # Flood risk points DUMMY VALUES CURRENTLY
+    df = pd.read_csv('below_sea_level.csv')
+
     fig.add_trace(
-        go.Scattermapbox(
-            lat=['49.4', '49.5', '49.6'],
-            lon=['-122.5', '-122.6', '-122.8'],
-            mode='markers',
-            marker=go.scattermapbox.Marker(
-                color='rgb(0, 0, 255)',
-                size=12,
-                colorscale='teal',
-                showscale=True,
-                cmax=200,
-                cmin=0
-            ),
-            text=['Flood Risk'],
-        )
+        px.scatter_mapbox(
+            df,
+            lat='lat',
+            lon='long',
+            color_discrete_sequence=['red'],
+            zoom=3
+        ).data[0]
     )
-    fig.update_layout(mapbox_style="open-street-map",
+    fig.update_layout(mapbox_style='open-street-map',
                       mapbox={'center': go.layout.mapbox.Center(lat=data['lat'][0], lon=data['lng'][0]), 'zoom': 10})
-    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
+    fig.update_layout(margin={'r': 0, 't': 0, 'l': 0, 'b': 0})
 
     return fig
 
