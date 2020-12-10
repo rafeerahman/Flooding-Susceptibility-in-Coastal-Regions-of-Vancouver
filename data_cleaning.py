@@ -68,9 +68,9 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tupl
 
 ##################################################################
 # Creating a dataframe with predicted values - using KNN algorithm
+# 20 years into the future
 ##################################################################
 
-# FULL DF lat, lon, year, slr, elevation for map vis
 
 if __name__ == '__main__':
     # python_ta.check_all(config={
