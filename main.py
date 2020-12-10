@@ -32,7 +32,7 @@ if __name__ == '__main__':
     app.layout = html.Div([
         html.Div([
             html.Div([
-                dcc.Graph(figure=display_map(map))
+                dcc.Graph(figure=display_map(data_map))
             ], className="six columns"),
             html.Div([
                 dcc.Graph(figure=display_graph(dataset))

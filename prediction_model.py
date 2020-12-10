@@ -34,7 +34,7 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
 
     fig.update_layout(title='Sea Level Anomaly in the North Pacific Ocean from (1972 - 2040)',
                       xaxis_title='Year',
-                      yaxis_title='Sea Level Anomaly (mm)')
+                      yaxis_title='Change in Sea Level (mm)')
 
     return fig
 
