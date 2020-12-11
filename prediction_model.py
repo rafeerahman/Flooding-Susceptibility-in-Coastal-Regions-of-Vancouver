@@ -1,21 +1,26 @@
 """
-Modelling the data with a regression, and displaying a line graph showing the change in sea level rise over the years,
+Modelling the data with a regression,
+displaying a line graph showing the change in sea level rise over the years,
 and displaying predicted values for 20 years into the future.
-https://www.analyticsvidhya.com/blog/2015/09/build-predictive-model-10-minutes-python/
+
+This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
+from typing import List, Tuple, Dict
+
+import python_ta
 from python_ta import contracts
-from data_cleaning import *
+
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-import statsmodels.api as sm
 
 
 ##########
 # DISPLAY
 ##########
 def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
-    """Return a graph of the sea level change over the years. NOT a predictive model
+    """Return a graph of the sea level change over the years.
+    NOT a predictive model
     """
     years = []
     levels = []
@@ -64,7 +69,8 @@ def graph_estimations(data: Dict[str, List[Tuple]]) -> go.Figure():
 
 if __name__ == '__main__':
     python_ta.check_all(config={
-        'extra-imports': [],  # the names (strs) of imported modules
+        'extra-imports': ['numpy', 'plotly.express',
+                          'plotly.graph_objects'],  # the names (strs) of imported modules
         'allowed-io': [],  # the names (strs) of functions that call print/open/input
         'max-line-length': 100,
         'disable': ['R1705', 'C0200']

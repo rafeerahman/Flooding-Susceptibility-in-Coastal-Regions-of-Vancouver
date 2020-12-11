@@ -1,21 +1,30 @@
 """
-A Python module called main.py whose main block contains the code necessary for running your entire program. When run, this module should:
+CSC110 Final Project - Predicting the Flooding Susceptibility of the Vancouver region
 
-Load the necessary files from the datasets.
-Perform your computations on the data.
-Produce an output (which may or may not be interactive).
+This is the main module, it will:
+    - Load the necessary files from the datasets
+    - Perform computations on the data
+    - Produce an interactive output
 
+===================================================
+Instructions:
+-download vancouver.csv, pacificocean_sea_level.csv
 RUN THIS FILE TO SEE DASH VISUALIZATION
+===================================================
+
+This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+from data_cleaning import *
 from prediction_model import *
 from map_visualization import *
 from dash.dependencies import Input, Output
 from canada_dsm import run_file
 
-# Create the datasets
+# Create the datasets & Call computing functions
+data_map = pd.read_csv('vancouver.csv')
 dataset = read_csv_data("pacificocean_sea_level.csv")
 condensed = group_means(dataset)
 means_to_csv(condensed)
@@ -30,6 +39,7 @@ external_stylesheets = [
     }
 ]
 
+# OUTPUT
 app = dash.Dash(__name__,
                 external_stylesheets=external_stylesheets)
 
@@ -68,6 +78,7 @@ def update_map(value: float) -> any:
     """
     Updates the map based on sea level change value
     """
+    # run_file() function will call other computation functions
     run_file('vancouver_surface_elevation.asc', value)
     return display_map(data_map)
 

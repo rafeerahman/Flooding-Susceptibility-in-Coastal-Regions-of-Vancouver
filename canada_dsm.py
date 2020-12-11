@@ -1,5 +1,7 @@
 """
 File for processing DSM elevation data from https://maps.canada.ca/czs/index-en.html.
+
+This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 
 from typing import List, Tuple

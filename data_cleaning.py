@@ -1,14 +1,17 @@
 """
 File for data manipulations: cleaning, creating training and testing datasets
+
+This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
+import csv
+import random
+
+from typing import Dict, List, Tuple
 import python_ta
 from python_ta import contracts
 
-import csv
-from typing import Dict, List, Tuple
 import sklearn
 from sklearn import model_selection
-import random
 
 
 ###########
@@ -86,11 +89,12 @@ def means_to_csv(data: Dict[str, List[Tuple[str, float]]]) -> None:
 
 
 if __name__ == '__main__':
-    # python_ta.check_all(config={
-    #     'extra-imports': [],  # the names (strs) of imported modules
-    #     'allowed-io': [],  # the names (strs) of functions that call print/open/input
-    #     'max-line-length': 100,
-    #     'disable': ['R1705', 'C0200']
-    #
-    # })
+    python_ta.check_all(config={
+        'extra-imports': ['csv', 'typing'],  # the names (strs) of imported modules
+        'allowed-io': ['means_to_csv',
+                       'read_csv_data'],  # the names (strs) of functions that call print/open/input
+        'max-line-length': 100,
+        'disable': ['R1705', 'C0200']
+
+    })
     python_ta.contracts.check_all_contracts()
