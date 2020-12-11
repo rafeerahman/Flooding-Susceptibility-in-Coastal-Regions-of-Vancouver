@@ -10,6 +10,7 @@ This is the main module, it will:
 Instructions:
 -download vancouver.csv, pacificocean_sea_level.csv
 RUN THIS FILE TO SEE DASH VISUALIZATION
+-click the link in the console output to view the visualizations
 ===================================================
 
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
