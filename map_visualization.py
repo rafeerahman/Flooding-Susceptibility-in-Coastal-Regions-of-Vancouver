@@ -11,7 +11,6 @@ import plotly.graph_objects as go  # or plotly.express as px
 
 import pandas as pd
 from typing import Any
-from canada_dsm import *
 
 data_map = pd.read_csv('vancouver.csv')
 
@@ -30,7 +29,7 @@ def display_map(data: Any) -> go.Figure():
             df,
             lat='lat',
             lon='long',
-            color_discrete_sequence=['red'],
+            color_discrete_sequence=['blue'],
             zoom=3
         ).data[0]
     )

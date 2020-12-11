@@ -15,6 +15,11 @@ from map_visualization import *
 from dash.dependencies import Input, Output
 from canada_dsm import run_file
 
+# Create the datasets
+dataset = read_csv_data("pacificocean_sea_level.csv")
+condensed = group_means(dataset)
+means_to_csv(condensed)
+
 external_stylesheets = [
     'https://codepen.io/chriddyp/pen/bWLwgP.css',
     {

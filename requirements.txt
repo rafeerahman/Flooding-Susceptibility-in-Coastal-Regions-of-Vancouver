@@ -10,3 +10,4 @@ plotly
 numpy
 pandas
 dash==1.17.0
+statsmodels

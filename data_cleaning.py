@@ -52,6 +52,7 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tupl
 
     for satellite in data:
         years = {pair[0][0:4] for pair in data[satellite]}
+        years = sorted(years)
 
         for year in years:
             annual_mean = 0
@@ -66,9 +67,21 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict[str, List[Tupl
     return new_data
 
 
+# HELPER FUNCTION
+def means_to_csv(data: Dict[str, List[Tuple[str, float]]]) -> None:
+    """Convert the mean values dictionary to a csv file so it can be read by pandas
+    """
+    with open('data_predictions.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['year', 'sea_level'])
+        for satellite in data:
+            for pair in data[satellite]:
+                writer.writerow([pair[0], pair[1]])
+
+
 ##################################################################
-# Creating a dataframe with predicted values - using KNN algorithm
-# 20 years into the future
+# Creating a csv with predicted values - using KNN algorithm
+# 20 or 100? years into the future
 ##################################################################
 
 

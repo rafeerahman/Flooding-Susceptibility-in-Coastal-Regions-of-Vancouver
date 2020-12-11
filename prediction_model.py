@@ -8,10 +8,7 @@ from data_cleaning import *
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-
-# Create the datasets
-dataset = read_csv_data("pacificocean_sea_level.csv")
-condensed = group_means(dataset)
+import statsmodels.api as sm
 
 
 ##########
@@ -32,7 +29,7 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
     fig.add_trace(go.Scatter(x=years[2], y=levels[2], name='Jason-2'))
     fig.add_trace(go.Scatter(x=years[3], y=levels[3], name='Jason-3'))
 
-    fig.update_layout(title='Sea Level Anomaly in the North Pacific Ocean from (1972 - 2040)',
+    fig.update_layout(title='Sea Level Anomaly in the North Pacific Ocean from (1972 - 2020)',
                       xaxis_title='Year',
                       yaxis_title='Change in Sea Level (mm)')
 
@@ -51,11 +48,11 @@ def display_annual_mean(data: Dict[str, List[Tuple]]) -> go.Figure():
     years = np.concatenate(years)
     levels = np.concatenate(levels)
 
-    fig = px.scatter(x=years, y=levels)
+    fig = px.scatter(x=years, y=levels, trendline="ols")
 
-    fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1972 - 2040)',
+    fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1972 - 2020)',
                       xaxis_title='Year',
-                      yaxis_title='Sea Level Anomaly (mm)')
+                      yaxis_title='Change in Sea Level (mm)')
 
     return fig
 
