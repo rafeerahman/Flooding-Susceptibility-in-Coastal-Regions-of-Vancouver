@@ -31,6 +31,7 @@ def display_map(data: Any) -> go.Figure():
             lat='lat',
             lon='long',
             color_discrete_sequence=['red'],
+            opacity=0.1,
             zoom=3
         ).data[0]
     )
