@@ -44,31 +44,91 @@ external_stylesheets = [
 app = dash.Dash(__name__,
                 external_stylesheets=external_stylesheets)
 
+# app.layout = html.Div([
+#
+#     html.H1("Flooding Susceptibility in Vancouver Coastal Regions"),
+#
+#     html.Div([
+#
+#         html.Div([
+#             dcc.Graph(id='map_plot')
+#         ], className="six columns"),
+#
+#         html.Div([
+#             dcc.Graph(figure=display_graph(dataset))
+#         ], className="six columns"),
+#
+#         html.Div([
+#             dcc.Graph(figure=display_annual_mean(condensed))
+#         ], className="six columns"),
+#
+#     ]),
+#
+#     dcc.Slider(
+#         id='sea_level_slider',
+#         min=-5,
+#         max=15,
+#         step=0.01,
+#         marks={
+#             -5: '-5m',
+#             0: '0m',
+#             5: '5m',
+#             10: '10m',
+#             15: '15m',
+#         },
+#         value=0
+#     )
+#
+# ])
+
 app.layout = html.Div([
-    html.Div([
-        html.Div([
-            dcc.Graph(id='map_plot')
-        ], className="six columns"),
-        html.Div([
-            dcc.Graph(figure=display_graph(dataset))
-        ], className="six columns"),
-        html.Div([
-            dcc.Graph(figure=display_annual_mean(condensed))
-        ], className="six columns"),
-    ]),
-    dcc.Slider(
-        id='sea_level_slider',
-        min=-5,
-        max=15,
-        step=0.01,
-        marks={
-            -5: '-5m',
-            0:  '0m',
-            5: '5m',
-            10: '10m',
-            15: '15m',
-        },
-        value=0
+
+    html.H1("Flooding Susceptibility in Vancouver Coastal Regions"),
+
+    html.Div(
+        className="row",
+        children=[
+            html.Div(
+                className="six columns",
+                children=[
+                    html.Div([
+                        dcc.Graph(id='map_plot'),
+                        dcc.Slider(
+                                id='sea_level_slider',
+                                min=-5,
+                                max=15,
+                                step=0.01,
+                                 marks={
+                                    -5: '-5m',
+                                    0: '0m',
+                                    5: '5m',
+                                    10: '10m',
+                                    15: '15m',
+                                },
+                                value=0
+                        ),
+                    ])
+                ]
+            ),
+            html.Div(
+                className="six columns",
+                children=html.Div([
+                    dcc.Graph(
+                        id='right-top-graph',
+                        figure=
+                        display_graph(dataset)
+
+                    ),
+                    dcc.Graph(
+                        id='right-bottom-graph',
+                        figure=
+                        display_annual_mean(condensed)
+
+                    ),
+
+                ])
+            )
+        ]
     )
 ])
 
