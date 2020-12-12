@@ -4,20 +4,28 @@ Theil-Sun Regression Calculation for Points
 
 import statistics
 import csv
-import pandas
 from typing import Tuple, List
 from scipy.stats import linregress
 
-dataset = pandas.read_csv('data_predictions.csv')
 
+def process_file() -> Tuple[int, List[float]]:
+    """Return the new values to add to the file
+    """
+    # Predict until 2100
+    years = 2100
+    x_data = []
+    y_data = []
+    with open('data_predictions.csv', 'r') as read_obj:
+        read_obj.readline()  # skip first line
+        reader = csv.reader(read_obj)
+        for row in reader:
+            x_data.append(row[0])
+            y_data.append(row[1])
 
-x_data = []
-y_data = []
-with open('data_predictions.csv', 'rb') as read_obj:
-    reader = csv.reader(read_obj, delimiter='|')
-    for row in reader:
-        x_data.append(int(row[0]))
-        y_data.append(float(row[1]))
+    m, b = theil_sen_linear_model(x_data, y_data)
+    new_values = projected_values(m, b, 2100)
+
+    return years, new_values
 
 
 def linear_regression(x_coords: list, y_coords: list) -> list:
@@ -37,7 +45,7 @@ def theil_sen_linear_model(x_cords: list, y_cords: list) -> Tuple[float, float]:
     """
     list_of_slopes = []
     for x in range(len(x_cords)):
-        slope = (y_cords[x+1] - y_cords[x]) / (x_cords[x + 1] - x_cords[x])
+        slope = (y_cords[x + 1] - y_cords[x]) / (x_cords[x + 1] - x_cords[x])
         list_of_slopes.append(slope)
 
     m = statistics.median(list_of_slopes)
@@ -50,7 +58,7 @@ def projected_values(slope: float, y_int: float, years: int) -> List[float]:
     Returns a list of projected ocean levels based on a Theil-Sen linear model
     """
     final_values = []
-    for num in range(2020, years):
+    for num in range(2020, years + 1):
         projection = slope * num + y_int
         final_values.append(projection)
     return final_values

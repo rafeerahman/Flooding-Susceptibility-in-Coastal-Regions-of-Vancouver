@@ -533,13 +533,13 @@ footer {
     <body>
         <header>
             <h1 class="title">PyTA Error Report</h1>
-            <time>Thu. Dec. 10 2020, 09:48:10 PM</time>
+            <time>Sat. Dec. 12 2020, 01:31:20 AM</time>
         </header>
         <main>
             
             <section>
                 <article class="file-name">
-                    <h2> C:/Users/lorib/Documents/Github Repositories/CSC110-Project/map_visualization.py </h2>
+                    <h2> C:/Users/lorib/Documents/Github Repositories/CSC110-Project/data_cleaning.py </h2>
                 </article>
                 <article class="error-output code-errors">
                     <h3 class="category-heading">
@@ -550,9 +550,47 @@ footer {
                     </h3>
                     <div class="content collapsible">
                         
-                        <span class="empty-placeholder">None!
-
-</span>
+                        <div class="error-instance">
+                            <div class="info">
+                                <span class="error-link code-error-id">
+                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;E9999" target="_blank">&#10064; E9999 (forbidden-import)</a>
+                                </span>
+                                <span class="occurrences">
+                                1
+                                
+                                 occurrence.
+                                
+                                </span>
+                                <span class="shown">
+                                
+                                </span>
+                                <span class="slider">
+                                    <button> Expand/Collapse </button>
+                                </span>
+                            </div>
+                            <div class="message-container collapsible">
+                                
+                                <div class="message">
+                                    <h4 class="message-name">
+                                        [Line 11] You may not import any modules - you imported theilsen on line 11.
+                                        <span class="slider">
+                                            <button style="float: right; background: #458B00;"> Expand/Collapse </button>
+                                        </span>
+                                    </h4>
+                                    
+                                    <div class="collapsible">
+                                      <code>    <span class="grey line-num">9</span>  <span class="grey"><span class="pygments-kn">import</span> <span class="pygments-nn">python_ta</span></span>
+   <span class="grey line-num">10</span>  <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">python_ta</span> <span class="pygments-kn">import</span> <span class="pygments-n">contracts</span></span>
+   <span class="gbold line-num">11</span>  <span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">theilsen</span> <span class="pygments-kn">import</span> <span class="pygments-n">process_file</span></span>
+   <span class="grey line-num">12</span>  <span class="grey"></span>
+   <span class="grey line-num">13</span>  <span class="grey"></span>
+</code>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
                         
                     </div>
                 </article>
@@ -564,6 +602,198 @@ footer {
                         </span>
                     </h3>
                     <div class="content collapsible">
+                        
+                        <div class="error-instance">
+
+                            <div class="info">
+                                <span class="error-link style-error-id">
+                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;E9969" target="_blank">&#10064; E9969 (possibly-undefined)</a>
+                                </span>
+                                <span class="occurrences">
+                                1
+                                
+                                 occurrence.
+                                
+                                </span>
+                                <span class="shown">
+                                
+                                </span>
+                                <span class="slider">
+                                   <button> Expand/Collapse </button>
+                                </span>
+                            </div>
+
+                            <div class="message-container collapsible">
+                                
+                                <div class="message">
+                                    <h4 class="message-name">
+                                        [Line 54] This variable might not be defined when this statement is executed.
+                                        <span class="slider">
+                                            <button style="float: right; background: #458B00;"> Expand/Collapse </button>
+                                        </span>
+                                    </h4>
+                                    <div class="collapsible">
+                                      
+                                      <code>   <span class="grey line-num">52</span>  <span class="grey"></span>
+   <span class="grey line-num">53</span>      <span class="grey"><span class="pygments-k">for</span> <span class="pygments-n">satellite</span> <span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">:</span></span>
+   <span class="gbold line-num">54</span>          <span class="black"><span class="pygments-n">years</span> <span class="pygments-o">=</span> <span class="pygments-p">{</span></span><span class="highlight-pyta"><span class="pygments-n">pair</span></span><span class="black"><span class="pygments-p">[</span><span class="pygments-mi">0</span><span class="pygments-p">][</span><span class="pygments-mi">0</span><span class="pygments-p">:</span><span class="pygments-mi">4</span><span class="pygments-p">]</span> <span class="pygments-k">for</span> <span class="pygments-n">pair</span> <span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">[</span><span class="pygments-n">satellite</span><span class="pygments-p">]}</span></span>
+   <span class="grey line-num">55</span>          <span class="grey"><span class="pygments-n">years</span> <span class="pygments-o">=</span> <span class="pygments-nb">sorted</span><span class="pygments-p">(</span><span class="pygments-n">years</span><span class="pygments-p">)</span></span>
+   <span class="grey line-num">56</span>  <span class="grey"></span>
+</code>
+                                      
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        
+                        <div class="error-instance">
+
+                            <div class="info">
+                                <span class="error-link style-error-id">
+                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;E9988" target="_blank">&#10064; E9988 (shadowing-inside-comprehension)</a>
+                                </span>
+                                <span class="occurrences">
+                                1
+                                
+                                 occurrence.
+                                
+                                </span>
+                                <span class="shown">
+                                
+                                </span>
+                                <span class="slider">
+                                   <button> Expand/Collapse </button>
+                                </span>
+                            </div>
+
+                            <div class="message-container collapsible">
+                                
+                                <div class="message">
+                                    <h4 class="message-name">
+                                        [Line 54] Comprehension variable 'pair' shadows a variable in an outer scope
+                                        <span class="slider">
+                                            <button style="float: right; background: #458B00;"> Expand/Collapse </button>
+                                        </span>
+                                    </h4>
+                                    <div class="collapsible">
+                                      
+                                      <code>   <span class="grey line-num">52</span>  <span class="grey"></span>
+   <span class="grey line-num">53</span>      <span class="grey"><span class="pygments-k">for</span> <span class="pygments-n">satellite</span> <span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">:</span></span>
+   <span class="gbold line-num">54</span>          <span class="black"><span class="pygments-n">years</span> <span class="pygments-o">=</span> <span class="pygments-p">{</span><span class="pygments-n">pair</span><span class="pygments-p">[</span><span class="pygments-mi">0</span><span class="pygments-p">][</span><span class="pygments-mi">0</span><span class="pygments-p">:</span><span class="pygments-mi">4</span><span class="pygments-p">]</span> <span class="pygments-k">for</span> </span><span class="highlight-pyta"><span class="pygments-n">pair</span></span> <span class="black"><span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">[</span><span class="pygments-n">satellite</span><span class="pygments-p">]}</span></span>
+   <span class="grey line-num">55</span>          <span class="grey"><span class="pygments-n">years</span> <span class="pygments-o">=</span> <span class="pygments-nb">sorted</span><span class="pygments-p">(</span><span class="pygments-n">years</span><span class="pygments-p">)</span></span>
+   <span class="grey line-num">56</span>  <span class="grey"></span>
+</code>
+                                      
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        
+                        <div class="error-instance">
+
+                            <div class="info">
+                                <span class="error-link style-error-id">
+                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;R1702" target="_blank">&#10064; R1702 (too-many-nested-blocks)</a>
+                                </span>
+                                <span class="occurrences">
+                                1
+                                
+                                 occurrence.
+                                
+                                </span>
+                                <span class="shown">
+                                
+                                </span>
+                                <span class="slider">
+                                   <button> Expand/Collapse </button>
+                                </span>
+                            </div>
+
+                            <div class="message-container collapsible">
+                                
+                                <div class="message">
+                                    <h4 class="message-name">
+                                        [Line 53] Too many nested blocks (4/3)
+                                        <span class="slider">
+                                            <button style="float: right; background: #458B00;"> Expand/Collapse </button>
+                                        </span>
+                                    </h4>
+                                    <div class="collapsible">
+                                      
+                                      <code>   <span class="grey line-num">51</span>      <span class="grey"><span class="pygments-n">new_data</span> <span class="pygments-o">=</span> <span class="pygments-p">{</span><span class="pygments-s1">&#39;topex_pos&#39;</span><span class="pygments-p">:</span> <span class="pygments-p">[],</span> <span class="pygments-s1">&#39;jason-1&#39;</span><span class="pygments-p">:</span> <span class="pygments-p">[],</span> <span class="pygments-s1">&#39;jason-2&#39;</span><span class="pygments-p">:</span> <span class="pygments-p">[],</span> <span class="pygments-s1">&#39;jason-3&#39;</span><span class="pygments-p">:</span> <span class="pygments-p">[]}</span></span>
+   <span class="grey line-num">52</span>  <span class="grey"></span>
+   <span class="gbold line-num">53</span>      <span class="black"></span><span class="highlight-pyta"><span class="pygments-k">for</span> <span class="pygments-n">satellite</span> <span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">:</span></span>
+   <span class="gbold line-num">54</span>          <span class="highlight-pyta"><span class="pygments-n">years</span> <span class="pygments-o">=</span> <span class="pygments-p">{</span><span class="pygments-n">pair</span><span class="pygments-p">[</span><span class="pygments-mi">0</span><span class="pygments-p">][</span><span class="pygments-mi">0</span><span class="pygments-p">:</span><span class="pygments-mi">4</span><span class="pygments-p">]</span> <span class="pygments-k">for</span> <span class="pygments-n">pair</span> <span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">[</span><span class="pygments-n">satellite</span><span class="pygments-p">]}</span></span>
+   <span class="gbold line-num">55</span>          <span class="highlight-pyta"><span class="pygments-n">years</span> <span class="pygments-o">=</span> <span class="pygments-nb">sorted</span><span class="pygments-p">(</span><span class="pygments-n">years</span><span class="pygments-p">)</span></span>
+   <span class="gbold line-num">56</span>  <span class="highlight-pyta"></span>
+   <span class="gbold line-num">57</span>          <span class="highlight-pyta"><span class="pygments-k">for</span> <span class="pygments-n">year</span> <span class="pygments-ow">in</span> <span class="pygments-n">years</span><span class="pygments-p">:</span></span>
+   <span class="gbold line-num">58</span>              <span class="highlight-pyta"><span class="pygments-n">annual_mean</span> <span class="pygments-o">=</span> <span class="pygments-mi">0</span></span>
+   <span class="gbold line-num">59</span>              <span class="highlight-pyta"><span class="pygments-n">count</span> <span class="pygments-o">=</span> <span class="pygments-mi">0</span></span>
+   <span class="gbold line-num">60</span>              <span class="highlight-pyta"><span class="pygments-k">for</span> <span class="pygments-n">pair</span> <span class="pygments-ow">in</span> <span class="pygments-n">data</span><span class="pygments-p">[</span><span class="pygments-n">satellite</span><span class="pygments-p">]:</span></span>
+   <span class="gbold line-num">61</span>                  <span class="highlight-pyta"><span class="pygments-k">if</span> <span class="pygments-n">year</span> <span class="pygments-o">==</span> <span class="pygments-n">pair</span><span class="pygments-p">[</span><span class="pygments-mi">0</span><span class="pygments-p">][</span><span class="pygments-mi">0</span><span class="pygments-p">:</span><span class="pygments-mi">4</span><span class="pygments-p">]:</span></span>
+   <span class="gbold line-num">62</span>                      <span class="highlight-pyta"><span class="pygments-n">annual_mean</span> <span class="pygments-o">+=</span> <span class="pygments-n">pair</span><span class="pygments-p">[</span><span class="pygments-mi">1</span><span class="pygments-p">]</span></span>
+   <span class="gbold line-num">63</span>                      <span class="highlight-pyta"><span class="pygments-n">count</span> <span class="pygments-o">+=</span> <span class="pygments-mi">1</span></span>
+   <span class="gbold line-num">64</span>              <span class="highlight-pyta"><span class="pygments-n">annual_mean</span> <span class="pygments-o">/=</span> <span class="pygments-n">count</span></span>
+   <span class="gbold line-num">65</span>              <span class="highlight-pyta"><span class="pygments-n">new_data</span><span class="pygments-p">[</span><span class="pygments-n">satellite</span><span class="pygments-p">]</span><span class="pygments-o">.</span><span class="pygments-n">append</span><span class="pygments-p">((</span><span class="pygments-n">year</span><span class="pygments-p">,</span> <span class="pygments-n">annual_mean</span><span class="pygments-p">))</span></span>
+   <span class="grey line-num">66</span>  <span class="grey"></span>
+   <span class="grey line-num">67</span>      <span class="grey"><span class="pygments-k">return</span> <span class="pygments-n">new_data</span></span>
+</code>
+                                      
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                        
+                        <div class="error-instance">
+
+                            <div class="info">
+                                <span class="error-link style-error-id">
+                                    <a href="http://www.cs.toronto.edu/~david/pyta/&#35;E9998" target="_blank">&#10064; E9998 (IO-function-not-allowed)</a>
+                                </span>
+                                <span class="occurrences">
+                                1
+                                
+                                 occurrence.
+                                
+                                </span>
+                                <span class="shown">
+                                
+                                </span>
+                                <span class="slider">
+                                   <button> Expand/Collapse </button>
+                                </span>
+                            </div>
+
+                            <div class="message-container collapsible">
+                                
+                                <div class="message">
+                                    <h4 class="message-name">
+                                        [Line 92] Used IO function open
+                                        <span class="slider">
+                                            <button style="float: right; background: #458B00;"> Expand/Collapse </button>
+                                        </span>
+                                    </h4>
+                                    <div class="collapsible">
+                                      
+                                      <code>   <span class="grey line-num">90</span>      <span class="grey"><span class="pygments-s2">&quot;&quot;&quot;</span></span>
+   <span class="grey line-num">91</span>      <span class="grey"><span class="pygments-n">values</span> <span class="pygments-o">=</span> <span class="pygments-n">process_file</span><span class="pygments-p">()</span></span>
+   <span class="gbold line-num">92</span>      <span class="black"><span class="pygments-k">with</span> </span><span class="highlight-pyta"><span class="pygments-nb">open</span><span class="pygments-p">(</span><span class="pygments-s1">&#39;data_predictions.csv&#39;</span><span class="pygments-p">,</span> <span class="pygments-s1">&#39;w&#39;</span><span class="pygments-p">,</span> <span class="pygments-n">newline</span><span class="pygments-o">=</span><span class="pygments-s1">&#39;&#39;</span><span class="pygments-p">)</span></span> <span class="black"><span class="pygments-k">as</span> <span class="pygments-n">file</span><span class="pygments-p">:</span></span>
+   <span class="grey line-num">93</span>          <span class="grey"><span class="pygments-n">writer</span> <span class="pygments-o">=</span> <span class="pygments-n">csv</span><span class="pygments-o">.</span><span class="pygments-n">writer</span><span class="pygments-p">(</span><span class="pygments-n">file</span><span class="pygments-p">)</span></span>
+   <span class="grey line-num">94</span>          <span class="grey"><span class="pygments-n">i</span> <span class="pygments-o">=</span> <span class="pygments-mi">0</span></span>
+</code>
+                                      
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
                         
                         <div class="error-instance">
 
@@ -589,18 +819,18 @@ footer {
                                 
                                 <div class="message">
                                     <h4 class="message-name">
-                                        [Line 12] Unused contracts imported from python_ta
+                                        [Line 10] Unused contracts imported from python_ta
                                         <span class="slider">
                                             <button style="float: right; background: #458B00;"> Expand/Collapse </button>
                                         </span>
                                     </h4>
                                     <div class="collapsible">
                                       
-                                      <code>   <span class="grey line-num">10</span>  <span class="grey"></span>
-   <span class="grey line-num">11</span>  <span class="grey"><span class="pygments-kn">import</span> <span class="pygments-nn">python_ta</span></span>
-   <span class="gbold line-num">12</span>  <span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">python_ta</span> <span class="pygments-kn">import</span> <span class="pygments-n">contracts</span></span>
-   <span class="grey line-num">13</span>  <span class="grey"><span class="pygments-kn">import</span> <span class="pygments-nn">plotly.express</span> <span class="pygments-k">as</span> <span class="pygments-nn">px</span></span>
-   <span class="grey line-num">14</span>  <span class="grey"><span class="pygments-kn">import</span> <span class="pygments-nn">plotly.graph_objects</span> <span class="pygments-k">as</span> <span class="pygments-nn">go</span></span>
+                                      <code>    <span class="grey line-num">8</span>  <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">typing</span> <span class="pygments-kn">import</span> <span class="pygments-n">Dict</span><span class="pygments-p">,</span> <span class="pygments-n">List</span><span class="pygments-p">,</span> <span class="pygments-n">Tuple</span></span>
+    <span class="grey line-num">9</span>  <span class="grey"><span class="pygments-kn">import</span> <span class="pygments-nn">python_ta</span></span>
+   <span class="gbold line-num">10</span>  <span class="highlight-pyta"><span class="pygments-kn">from</span> <span class="pygments-nn">python_ta</span> <span class="pygments-kn">import</span> <span class="pygments-n">contracts</span></span>
+   <span class="grey line-num">11</span>  <span class="grey"><span class="pygments-kn">from</span> <span class="pygments-nn">theilsen</span> <span class="pygments-kn">import</span> <span class="pygments-n">process_file</span></span>
+   <span class="grey line-num">12</span>  <span class="grey"></span>
 </code>
                                       
                                     </div>

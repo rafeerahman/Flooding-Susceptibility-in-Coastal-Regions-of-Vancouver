@@ -6,8 +6,10 @@ pytest
 python-ta
 
 # Graphics and data visualization
-plotly
-numpy
-pandas
+plotly~=4.9.0
+numpy~=1.19.1
+pandas~=1.1.0
 dash==1.17.0
 statsmodels
+
+scipy~=1.5.4
