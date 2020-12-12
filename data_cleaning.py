@@ -63,11 +63,7 @@ def group_means(data: Dict[str, List[Tuple[str, float]]]) -> Dict:
                     count += 1
             annual_mean /= count
 
-            if year not in new_data:
-                new_data[year] = annual_mean
-            else:
-                prev = new_data[year]
-                new_data[year] = (prev + annual_mean) / 2
+            remove_dupes(year, new_data, annual_mean)
 
     return new_data
 
@@ -85,16 +81,19 @@ def means_to_csv(data: Dict) -> None:
     # predict_data()
 
 
-def remove_dupes(data: Dict[str, List[Tuple[str, float]]]) -> None:
+def remove_dupes(year: int, new_data: Dict, mean: float) -> None:
     """For the years that have two means due to different satellites,
     get the mean of the two means.
     """
-    ...
+    if year not in new_data:
+        new_data[year] = mean
+    else:
+        prev = new_data[year]
+        new_data[year] = (prev + mean) / 2
 
 
 ##################################################################
-# Creating a csv with predicted values - using KNN algorithm
-# 20 or 100? years into the future
+# Creating a csv with predicted values
 ##################################################################
 def predict_data() -> None:
     """Write the predicted data points to data_predictions.csv

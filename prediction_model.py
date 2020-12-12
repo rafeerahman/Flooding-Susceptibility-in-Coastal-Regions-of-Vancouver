@@ -42,7 +42,8 @@ def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
 
 
 def display_annual_mean(data: str) -> go.Figure():
-    """Return a graph of the sea level change over the years. Can work with the prediction model
+    """Return a graph of the sea level change over the years.
+    Can work with the prediction model
     """
     df = pd.read_csv(data)
 
