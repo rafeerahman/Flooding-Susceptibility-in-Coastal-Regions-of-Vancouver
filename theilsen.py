@@ -19,8 +19,8 @@ def process_file() -> Tuple[int, List[float]]:
         read_obj.readline()  # skip first line
         reader = csv.reader(read_obj)
         for row in reader:
-            x_data.append(row[0])
-            y_data.append(row[1])
+            x_data.append(int(row[0]))
+            y_data.append(float(row[1]))
 
     m, b = theil_sen_linear_model(x_data, y_data)
     new_values = projected_values(m, b, 2100)
