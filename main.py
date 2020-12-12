@@ -8,6 +8,8 @@ This is the main module, it will:
 
 ===================================================
 Instructions:
+-ensure that all of the required modules from requirements.txt
+are successfully installed
 -download vancouver_surface_elevation.asc, pacificocean_sea_level.csv
 RUN THIS FILE TO SEE DASH VISUALIZATION
 -click the link in the console output to view the visualizations
