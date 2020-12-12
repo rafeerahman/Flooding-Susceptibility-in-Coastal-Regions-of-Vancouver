@@ -18,7 +18,7 @@ def run_file(filepath: str, sea_level_change: float) -> None:
     data = read_asc(filepath)
 
     # create a list of points with elevation and coordinates
-    points = assign_cords(filepath, data)
+    points = assign_coords(filepath, data)
 
     # check which points are below sea level
     below_sea_level = check_elevation(points, sea_level_change)
@@ -49,7 +49,7 @@ def read_asc(filepath: str) -> List[List[float]]:
     return list(data.tolist())
 
 
-def assign_cords(filepath: str, data: List[List[float]]) -> List[Tuple[float, float, float]]:
+def assign_coords(filepath: str, data: List[List[float]]) -> List[Tuple[float, float, float]]:
     """
     Returns a list, sorted by elevation, of data points in the
     format of a tuple of (elevation, latitude, longitude)
@@ -87,7 +87,7 @@ def check_elevation(data: List[Tuple[float, float, float]], sea_level_change: fl
     list_so_far = []
     i = 0
     while data[i][0] < sea_level_change and i < len(data) - 1:
-        list_so_far.append([data[i][1], data[i][2]])
+        list_so_far.append([data[i][1], data[i][2], data[i][0]])
         i += 1
     return list_so_far
 
@@ -109,5 +109,5 @@ def write_to_csv(coords: List[List[float]]) -> None:
 
     with open('below_sea_level.csv', 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['lat', 'long'])
+        writer.writerow(['lat', 'long', 'elevation'])
         writer.writerows(coords)

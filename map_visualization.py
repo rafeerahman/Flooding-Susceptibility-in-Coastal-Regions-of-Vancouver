@@ -28,11 +28,15 @@ def display_map(data: Any) -> go.Figure():
     fig.add_trace(
         px.scatter_mapbox(
             df,
+            title='Map of Vancouver Indicating Flood Regions',
             lat='lat',
             lon='long',
+            color='elevation',
             color_discrete_sequence=['blue'],
+            color_continuous_scale='Teal',
+            range_color=[-20, 20],
             opacity=0.1,
-            zoom=3
+            zoom=3,
         ).data[0]
     )
     fig.update_layout(mapbox_style='open-street-map',
