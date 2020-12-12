@@ -18,7 +18,7 @@ This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from data_cleaning import *
+from data_cleaning import read_csv_data, group_means, means_to_csv
 from prediction_model import *
 from map_visualization import *
 from dash.dependencies import Input, Output

@@ -5,7 +5,7 @@ and displaying predicted values for 20 years into the future.
 
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Any
 
 import python_ta
 from python_ta import contracts
@@ -62,7 +62,7 @@ def display_annual_mean(data: Dict[str, List[Tuple]]) -> go.Figure():
     return fig
 
 
-def graph_estimations(data: Dict[str, List[Tuple]]) -> go.Figure():
+def graph_estimations(data: Any) -> go.Figure():
     """Return a graph modelled to display 20 year predictions
     """
 

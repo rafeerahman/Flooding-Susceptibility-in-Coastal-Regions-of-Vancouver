@@ -4,9 +4,10 @@ File for data manipulations: cleaning, creating training and testing datasets
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 import csv
+import math
 import random
 
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Any
 import python_ta
 from python_ta import contracts
 
@@ -76,7 +77,7 @@ def means_to_csv(data: Dict[str, List[Tuple[str, float]]]) -> None:
     """
     with open('data_predictions.csv', 'w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['year', 'sea_level'])
+        writer.writerow(['year', 'mean_sea_level'])
         for satellite in data:
             for pair in data[satellite]:
                 writer.writerow([pair[0], pair[1]])
@@ -86,11 +87,14 @@ def means_to_csv(data: Dict[str, List[Tuple[str, float]]]) -> None:
 # Creating a csv with predicted values - using KNN algorithm
 # 20 or 100? years into the future
 ##################################################################
+def predict_data(data: Any) -> None:
+    """Write the predicted data points to data_predictions.csv
+    """
 
 
 if __name__ == '__main__':
     python_ta.check_all(config={
-        'extra-imports': ['csv', 'typing'],  # the names (strs) of imported modules
+        'extra-imports': ['csv', 'typing', 'math'],  # the names (strs) of imported modules
         'allowed-io': ['means_to_csv',
                        'read_csv_data'],  # the names (strs) of functions that call print/open/input
         'max-line-length': 100,
