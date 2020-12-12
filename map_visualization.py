@@ -31,18 +31,17 @@ def display_map(data: Any) -> go.Figure():
             title='Map of Vancouver Indicating Flood Regions',
             lat='lat',
             lon='long',
-            color='elevation',
+            color="elevation",
             color_discrete_sequence=['blue'],
-            color_continuous_scale='Teal',
-            range_color=[-20, 20],
-            opacity=0.1,
-            zoom=3,
+            opacity=0.5,
+            zoom=3
         ).data[0]
     )
     fig.update_layout(mapbox_style='open-street-map',
                       mapbox={'center': go.layout.mapbox.Center(lat=data['lat'][0],
                                                                 lon=data['lng'][0]), 'zoom': 10})
     fig.update_layout(margin={'r': 0, 't': 0, 'l': 0, 'b': 0})
+    fig.update_coloraxes(colorscale='inferno')
 
     return fig
 

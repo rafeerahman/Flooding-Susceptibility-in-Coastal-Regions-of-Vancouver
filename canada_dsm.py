@@ -87,7 +87,7 @@ def check_elevation(data: List[Tuple[float, float, float]], sea_level_change: fl
     list_so_far = []
     i = 0
     while data[i][0] < sea_level_change and i < len(data) - 1:
-        list_so_far.append([data[i][1], data[i][2], data[i][0]])
+        list_so_far.append([data[i][1], data[i][2], data[i][0] - sea_level_change])
         i += 1
     return list_so_far
 
