@@ -4,15 +4,10 @@ File for data manipulations: cleaning, creating training and testing datasets
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 import csv
-import math
-import random
 
 from typing import Dict, List, Tuple, Any
 import python_ta
 from python_ta import contracts
-
-import sklearn
-from sklearn import model_selection
 
 
 ###########

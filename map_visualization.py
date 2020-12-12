@@ -6,8 +6,6 @@ https://simplemaps.com/data/canada-cities
 
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
-from typing import Any
-
 import python_ta
 from python_ta import contracts
 import plotly.express as px
@@ -16,13 +14,13 @@ import plotly.graph_objects as go
 import pandas as pd
 
 
-def display_map(data: Any) -> go.Figure():
+def display_map() -> go.Figure():
     """Displays the map of the given data
     """
-    # Main point
-    fig = px.scatter_mapbox(data, lat='lat', lon='lng',
+    # Main point - Vancouver latitude and longitude
+    fig = px.scatter_mapbox(lat=[49.2500], lon=[-123.1000],
                             color_discrete_sequence=['fuchsia'], zoom=3)
-    # Flood risk points DUMMY VALUES CURRENTLY
+
     df = pd.read_csv('below_sea_level.csv')
 
     fig.add_trace(
@@ -38,8 +36,8 @@ def display_map(data: Any) -> go.Figure():
         ).data[0]
     )
     fig.update_layout(mapbox_style='open-street-map',
-                      mapbox={'center': go.layout.mapbox.Center(lat=data['lat'][0],
-                                                                lon=data['lng'][0]), 'zoom': 10})
+                      mapbox={'center': go.layout.mapbox.Center(lat=49.2500,
+                                                                lon=-123.1000), 'zoom': 10})
     fig.update_layout(margin={'r': 0, 't': 0, 'l': 0, 'b': 0})
     fig.update_coloraxes(colorscale='inferno')
 
@@ -49,8 +47,7 @@ def display_map(data: Any) -> go.Figure():
 if __name__ == '__main__':
     python_ta.check_all(config={
         'extra-imports': ['pandas', 'plotly.express',
-                          'plotly.graph_objects'],  # the names (strs) of imported modules
-        'allowed-io': [],  # the names (strs) of functions that call print/open/input
+                          'plotly.graph_objects'],
         'max-line-length': 100,
         'disable': ['R1705', 'C0200']
 

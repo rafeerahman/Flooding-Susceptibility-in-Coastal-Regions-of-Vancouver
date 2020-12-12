@@ -8,7 +8,7 @@ This is the main module, it will:
 
 ===================================================
 Instructions:
--download vancouver.csv, pacificocean_sea_level.csv
+-download vancouver_surface_elevation.asc, pacificocean_sea_level.csv
 RUN THIS FILE TO SEE DASH VISUALIZATION
 -click the link in the console output to view the visualizations
 ===================================================
@@ -25,9 +25,10 @@ from dash.dependencies import Input, Output
 from canada_dsm import run_file
 
 # Create the datasets & Call computing functions
-data_map = pd.read_csv('vancouver.csv')
 dataset = read_csv_data("pacificocean_sea_level.csv")
+# calculate the annual means
 condensed = group_means(dataset)
+# CREATE data_predictions.csv
 means_to_csv(condensed)
 
 external_stylesheets = [
@@ -122,7 +123,7 @@ app.layout = html.Div([
                     dcc.Graph(
                         id='right-bottom-graph',
                         figure=
-                        display_annual_mean(condensed)
+                        display_annual_mean('data_predictions.csv')
 
                     ),
 
@@ -141,7 +142,7 @@ def update_map(value: float) -> any:
     """
     # run_file() function will call other computation functions
     run_file('vancouver_surface_elevation.asc', value)
-    return display_map(data_map)
+    return display_map()
 
 
 if __name__ == '__main__':
