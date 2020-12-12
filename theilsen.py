@@ -44,7 +44,7 @@ def theil_sen_linear_model(x_cords: list, y_cords: list) -> Tuple[float, float]:
     points and calculates the y intercept of the model as well.
     """
     list_of_slopes = []
-    for x in range(len(x_cords)):
+    for x in range(len(x_cords)-1):
         slope = (y_cords[x + 1] - y_cords[x]) / (x_cords[x + 1] - x_cords[x])
         list_of_slopes.append(slope)
 
@@ -58,7 +58,7 @@ def projected_values(slope: float, y_int: float, years: int) -> List[float]:
     Returns a list of projected ocean levels based on a Theil-Sen linear model
     """
     final_values = []
-    for num in range(2020, years + 1):
+    for num in range(2021, years + 1):
         projection = slope * num + y_int
         final_values.append(projection)
     return final_values

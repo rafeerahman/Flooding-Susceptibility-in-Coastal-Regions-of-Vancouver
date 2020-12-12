@@ -100,11 +100,11 @@ def predict_data() -> None:
     """Write the predicted data points to data_predictions.csv
     """
     values = process_file()
-    with open('data_predictions.csv', 'w', newline='') as file:
+    with open('data_predictions.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         i = 0
         for year in range(2020, values[0]):
-            writer.writerow([year, values[1]])
+            writer.writerow([year, values[1][i]])
             i += 1
 
 
