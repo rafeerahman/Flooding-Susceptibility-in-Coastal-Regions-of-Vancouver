@@ -94,18 +94,18 @@ app.layout = html.Div([
                     html.Div([
                         dcc.Graph(id='map_plot'),
                         dcc.Slider(
-                                id='sea_level_slider',
-                                min=-5,
-                                max=15,
-                                step=0.01,
-                                 marks={
-                                    -5: '-5m',
-                                    0: '0m',
-                                    5: '5m',
-                                    10: '10m',
-                                    15: '15m',
-                                },
-                                value=0
+                            id='sea_level_slider',
+                            min=-5,
+                            max=15,
+                            step=0.01,
+                            marks={
+                                -5: '-5m',
+                                0: '0m',
+                                5: '5m',
+                                10: '10m',
+                                15: '15m',
+                            },
+                            value=0
                         ),
                     ])
                 ]
