@@ -33,7 +33,7 @@ def display_map(data: Any) -> go.Figure():
             lon='long',
             color="elevation",
             color_discrete_sequence=['blue'],
-            opacity=0.5,
+            opacity=0.1,
             zoom=3
         ).data[0]
     )
