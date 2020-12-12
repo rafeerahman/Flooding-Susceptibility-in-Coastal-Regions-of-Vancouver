@@ -57,7 +57,7 @@ def display_annual_mean(data: Dict[str, List[Tuple]]) -> go.Figure():
 
     fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1972 - 2020)',
                       xaxis_title='Year',
-                      yaxis_title='Change in Sea Level (mm)')
+                      yaxis_title='Average Change in Sea Level (mm)')
 
     return fig
 
