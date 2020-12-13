@@ -39,7 +39,7 @@ def display_map() -> go.Figure():
                       mapbox={'center': go.layout.mapbox.Center(lat=49.2500,
                                                                 lon=-123.1000), 'zoom': 10})
     fig.update_layout(margin={'r': 0, 't': 0, 'l': 0, 'b': 0})
-    fig.update_coloraxes(colorscale='inferno')
+    fig.update_coloraxes(colorscale='RdBu')
 
     return fig
 

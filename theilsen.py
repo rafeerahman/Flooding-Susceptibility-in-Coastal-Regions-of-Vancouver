@@ -1,5 +1,5 @@
 """
-Theil-Sun Regression Calculation for Points
+Theil-Sen Regression Calculation for Points
 """
 
 import statistics
@@ -12,7 +12,7 @@ def process_file() -> Tuple[int, List[float]]:
     """Return the new values to add to the file
     """
     # Predict until 2100
-    years = 2100
+    years = 2301
     x_data = []
     y_data = []
     with open('data_predictions.csv', 'r') as read_obj:
@@ -23,7 +23,7 @@ def process_file() -> Tuple[int, List[float]]:
             y_data.append(float(row[1]))
 
     m, b = theil_sen_linear_model(x_data, y_data)
-    new_values = projected_values(m, b, 2100)
+    new_values = projected_values(m, b, years)
 
     return years, new_values
 
@@ -58,6 +58,7 @@ def projected_values(slope: float, y_int: float, years: int) -> List[float]:
     Returns a list of projected ocean levels based on a Theil-Sen linear model
     """
     final_values = []
+    slope = slope
     for num in range(2021, years + 1):
         projection = slope * num + y_int
         final_values.append(projection)

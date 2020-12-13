@@ -78,7 +78,7 @@ def means_to_csv(data: Dict) -> None:
         for year in data:
             writer.writerow([year, data[year]])
 
-    # predict_data()
+    predict_data()
 
 
 def remove_dupes(year: int, new_data: Dict, mean: float) -> None:
@@ -102,7 +102,7 @@ def predict_data() -> None:
     with open('data_predictions.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         i = 0
-        for year in range(2020, values[0]):
+        for year in range(2021, values[0]):
             writer.writerow([year, values[1][i]])
             i += 1
 

@@ -20,6 +20,7 @@ This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import pandas as pd
 from data_cleaning import read_csv_data, group_means, means_to_csv
 from prediction_model import display_graph, display_annual_mean
 from map_visualization import display_map
@@ -61,17 +62,17 @@ app.layout = html.Div([
                         dcc.Graph(id='map_plot'),
                         dcc.Slider(
                             id='sea_level_slider',
-                            min=-5,
-                            max=15,
-                            step=0.01,
-                            marks={
-                                -5: '-5m',
-                                0: '0m',
-                                5: '5m',
-                                10: '10m',
-                                15: '15m',
-                            },
-                            value=0
+                            min=2020,  # -5
+                            max=2300,  # 15
+                            step=1,  # 0.01
+                            marks={year: str(year) for year in range(2020, 2320, 20)}, value=2020
+                            # {
+                            #     -5: '-5',  # -5
+                            #     0: '0',  # 0
+                            #     5: '5',  # 5
+                            #     10: '10',  # 10
+                            #     15: '2100',  # 15
+                            # },
                         ),
                     ])
                 ]
@@ -106,7 +107,11 @@ def update_map(value: float) -> any:
     Updates the map based on sea level change value
     """
     # run_file() function will call other computation functions
-    run_file('vancouver_surface_elevation.asc', value)
+    df = pd.read_csv('data_predictions.csv')
+    row_id = df.index[df['year'] == value].tolist()
+    val = df.loc[row_id[0]]['mean_sea_level']
+    sea_level = val / 1000  # convert mm to m
+    run_file('vancouver_surface_elevation.asc', sea_level)
     return display_map()
 
 
