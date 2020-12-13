@@ -40,8 +40,13 @@
 
 
     \section*{Computational Plan}
-    \hspace{\parindent}
+    \textbf{Part 1: Data Cleaning}
 
+    \hspace{\parindent}Our program is mainly composed of two parts, data processing and then extrapolation. With the used datasets being in csv and asc form, we needed to read them while at the same time removing any unnecessary data not needed for calculations. Most of these operations will be done in the data\_cleaning.py file. In this file we use the csv module to access the contents of the files then use a combination of for loops and module features from pandas and numpy to mutate our data so that it is compatible with our calculation functions. This is perhaps best demonstrated in the \texttt{read\_csv\_data function()}. This function aims to transform our pacificocean\_sea\_level.csv file into a dictionary Dict[str, List[Tuple[str, float]]] that will work with the rest of the program. To do this, it filters out empty values from the base data set and appends usable data points into the return dictionary. \\
+
+    A major computation performed by our program to transform this new data is seen in the \texttt{group\_means()} function. This function iterates through this new dictionary, extracting the years from each satellite and computing the means, resulting in a newly formatted dictionary by mutation done by the helper function \texttt{remove\_dupes()} with the years as the keys mapping to the mean sea level for that year. This condenses our original pacificocean\_sea\_level.csv into a simpler, summarized dataset. The program will write our transformed data into a new csv called predicted\_data.csv for pandas compatibility later on which is done through the usage of csv module and indexing, formatting. \\
+
+    The most important data processing is seen in the canada\_dsm.py file. This file interprets the elevation\_data.asc file into latitude and longitude points which will be plotted into our map visualization. This file achieves this mainly through the \texttt{assign\_coords()} function. The original elevation\_data.asv file contains values for the number of rows, columns, latitude of the bottommost coordinate, longitude of the leftmost coordinate, and the cell size. Using these initial values, we can use a nested for loop and some calculations to interpret each elevation into a latitude and longitude coordinate, based on its position in an ascii grid.
 
     \section*{Program Instructions}
     Before the program can be run, there are 2 necessary datasets to download:
@@ -49,14 +54,14 @@
         \item elevation\_data.asc (dataset containing the elevation for the vancouver area on a grid) from
         \href{https://drive.google.com/file/d/1pCJPV3rH0k5obd4s5SHKsn5q8E2FqlKg/view?usp=sharing}{CLICK TO DOWNLOAD}
         \begin{itemize}
-            \item 1. After downloading please rename this file to “elevation\_data.asc”
-            \item 2. Place it in the project directory (no subfolders)
+            \item[1.] After downloading please rename this file to “elevation\_data.asc”
+            \item[2.] Place it in the project directory (no subfolders)
         \end{itemize}
         \item Pacificocean\_sea\_level.csv (dataset containing satellite sea level rise measures) from
         \href{https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/slr/slr_sla_np_keep_txj1j2.csv}{CLICK TO DOWNLOAD}
         \begin{itemize}
-            \item 1. After downloading please name this file to “pacificocean\_sea\_level.csv”
-            \item 2. Again, place it in the project directory (no subfolders)
+            \item[1.] After downloading please name this file to “pacificocean\_sea\_level.csv”
+            \item[2.] Again, place it in the project directory (no subfolders)
         \end{itemize}
     \end{itemize}
 
@@ -87,7 +92,7 @@
 
     One of the main limitations was with finding an appropriate dataset for the sea level changes. It was very hard to find a dataset that was in a format that would be easily interpreted by our program, hence the many data filtrations/transformations we needed to apply to this dataset. It was also hard to find a dataset that dates back to an earlier year in the past, as in earlier than 1992. This affects our prediction model because the model was trained over a shorter period of time, so the projected trend may be less extreme than it is in reality. \\
 
-    Another limitation was with the plotly library, some of the functions were difficult to use because some parameters for our figures wouldn’t work as desired or described in the documentations, so we needed to research workarounds for these issues using other functions, which consumed a lot of time of the project. However, researching documentations for modules and seeking solutions for errors online is very typical in a software engineering environment, so it was good for us to get this experience. We used dash to display our plotly figures, the main challenge from this was dealing with the front end components. Since we are not experienced with front end development it was quite difficult to work with the dash framework, which results in a mediocre. However, we still made an effort to research how to work with this framework and were able to implement a slider which provides an interactive experience with our figures. \\
+    Another limitation was with the plotly library, some of the functions were difficult to use because some parameters for our figures wouldn’t work as desired or described in the documentations, so we needed to research workarounds for these issues using other functions, which consumed a lot of time of the project. However, researching documentations for modules and seeking solutions for errors online is very typical in a software engineering environment, so it was good for us to get this experience. We used dash to display our plotly figures, the main challenge from this was dealing with the front end components. Since we are not experienced with front end development it was quite difficult to work with the dash framework, which results in an interactive display that is more basic than we intended. However, we still made an effort to research how to work with this framework and were able to implement a slider which provides an interactive experience with our figures. \\
 
     The main obstacle we faced in designing this program was implementing the prediction model algorithm. This was difficult because it was hard to find a model that was appropriate for our situation. We also wanted to implement this algorithm without as much help from an external library as possible, to increase the complexity of our calculations. We used a Theil-Sen regression to determine the predicted sea levels, but also have a SARIMAX prediction model for a more complex prediction visualization. \\
 
