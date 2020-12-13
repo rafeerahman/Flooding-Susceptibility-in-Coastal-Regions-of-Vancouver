@@ -11,120 +11,122 @@
 \date{Monday, December 14, 2020}
 
 \begin{document}
-\maketitle
+    \maketitle
 
-\section*{Introduction}
+    \section*{Introduction}
 
-\textbf{How has climate change affected the sea levels in the Vancouver area over the years? Based on this, which areas project to be susceptible to flooding 280 years in the future?} \\
+    \textbf{How has climate change affected the sea levels in the Vancouver area over the years? Based on this, which areas project to be susceptible to flooding 280 years in the future?} \\
 
-Climate change has a number of devastating impacts on the environment. One of the issues that arise as a result of climate change is the global acceleration of sea-level rise. Sea-level rise (SLR), measured in metres, is frequently observed by researchers and has been known to be increasing for years. Changes in global temperature result in glaciers melting as well as the warming of ocean water, causing it to become less dense and expand, overall resulting in sea-level rise (Hausfather, 2019). Coastal regions are most heavily impacted by these changes since an increased sea-level will begin to take up land and potentially endanger those living nearby and increase the risk of floods and damage to agricultural land. Sea-level rise also has implications for inland areas since the displacement of civilians would mean an increased impact on even non-coastal regions. \\
- 
-A study from Nature Communications finds that approximately 300 million people live in areas at risk of flooding (Kulp \& Strauss, 2019). Countries including China, Bangladesh, and Vietnam are already facing heavy floods due to sea-level rise. Based on sea-level projections for 2050, land in these areas will fall below the elevation threshold for annual coastal floods (Jennings, 2019). Therefore, it is important to predict when in the future the sea-levels in those areas will pose a risk to those people if we do not slow down the effects of climate change. \\
+    Climate change has a number of devastating impacts on the environment. One of the issues that arise as a result of climate change is the global acceleration of sea-level rise. Sea-level rise (SLR), measured in metres, is frequently observed by researchers and has been known to be increasing for years. Changes in global temperature result in glaciers melting as well as the warming of ocean water, causing it to become less dense and expand, overall resulting in sea-level rise (Hausfather, 2019). Coastal regions are most heavily impacted by these changes since an increased sea-level will begin to take up land and potentially endanger those living nearby and increase the risk of floods and damage to agricultural land. Sea-level rise also has implications for inland areas since the displacement of civilians would mean an increased impact on even non-coastal regions. \\
 
-The goal of our research is to predict and visualize the effects of sea-level changes due to climate change in coastal regions, focusing on the greater Vancouver area. We have decided to analyze areas along the coastline to determine which are most at risk of flooding in the future by comparing the estimated future sea-level to the elevation of coastal regions. According to the 2016 Census, Vancouver has one of the highest population densities in Canada, so climate change and, by extension, SLR puts the many people living there at risk. Researchers are also worried that sea-level rise in this region may be 3 times worse than expected (Kulp \& Strauss, 2019). 
+    A study from Nature Communications finds that approximately 300 million people live in areas at risk of flooding (Kulp \& Strauss, 2019). Countries including China, Bangladesh, and Vietnam are already facing heavy floods due to sea-level rise. Based on sea-level projections for 2050, land in these areas will fall below the elevation threshold for annual coastal floods (Jennings, 2019). Therefore, it is important to predict when in the future the sea-levels in those areas will pose a risk to those people if we do not slow down the effects of climate change. \\
 
-
-\section*{Dataset Description}
-
-\hspace{\parindent}A dataset that we have used is from the NOAA / NESDIS / Laboratory for Satellite Altimetry Website. It is a CSV file that contains the sea level change in the north pacific ocean, given in millimetres. This file is named Pacificocean\_sea\_level.csv. \\
-
-The data ranges from the year 1992 to 2020  (there are multiple satellite captures for each year) and the values were obtained by the TOPEX/Poseidon, Jason-1, Jason-2, and Jason-3 satellites. The dataset contains 4 columns, one for the year, and 3 for each satellite and the value that it recorded at a point during the year. An example of data that is in this dataset is: A capture during the year 2020 by the Jason-3 satellite is a change of 140.61mm. \\
-
-We have cleaned this CSV dataset by calculating the mean sea level change for each year instead of having multiple captures for one year, putting all the satellite data together, and using this data we can predict the change in future years. We created a new CSV file called data\_predictions.csv  that contains two columns for the year and the corresponding sea level, including the values we predicted with our Theil-Sen regression model.  \\
-
-Another dataset we have used is Vancouver elevation data from the Government of Canada topographic information section of the website. It is an asc file (but we can easily read it as a .txt file) that contains elevation measurements (in metres) based on a selected area of the Vancouver region we are analyzing. The value 0 in this dataset represents the elevation at sea level. We can compare this elevation data to the sea level data so that we can determine flooding susceptibility. This data was interpreted into a grid of latitude and longitude values through calculations which allowed us to plot the data points into a plotly mapbox. \\
-
-After interpreting this DSM data, the program will create a new CSV file called below\_sea\_level.csv which contains all of the points which are below the given sea level for a certain year. This file contains 3 columns, latitude, longitude, and elevation. \\
-
-The program also creates a dataset named sarimax\_model\_data.csv, necessary for displaying the SARIMAX prediction model. This dataset has two columns, year (contains dates as datetime.datetime objects) and the mean\_sea\_level predicted by that model. 
+    The goal of our research is to predict and visualize the effects of sea-level changes due to climate change in coastal regions, focusing on the greater Vancouver area. We have decided to analyze areas along the coastline to determine which are most at risk of flooding in the future by comparing the estimated future sea-level to the elevation of coastal regions. According to the 2016 Census, Vancouver has one of the highest population densities in Canada, so climate change and, by extension, SLR puts the many people living there at risk. Researchers are also worried that sea-level rise in this region may be 3 times worse than expected (Kulp \& Strauss, 2019).
 
 
-\section*{Computational Plan}
-\hspace{\parindent}
+    \section*{Dataset Description}
 
- 
-\section*{Program Instructions}
-Before the program can be run, there are 2 necessary datasets to download:
-\begin{itemize}
-    \item Vancouver\_surface\_elevation.asc (dataset containing the elevation for the vancouver area on a grid) from
-    \href{https://drive.google.com/file/d/1pCJPV3rH0k5obd4s5SHKsn5q8E2FqlKg/view?usp=sharing}{CLICK TO DOWNLOAD} 
+    \hspace{\parindent}A dataset that we have used is from the NOAA / NESDIS / Laboratory for Satellite Altimetry Website. It is a CSV file that contains the sea level change in the north pacific ocean, given in millimetres. This file is named Pacificocean\_sea\_level.csv. \\
+
+    The data ranges from the year 1992 to 2020  (there are multiple satellite captures for each year) and the values were obtained by the TOPEX/Poseidon, Jason-1, Jason-2, and Jason-3 satellites. The dataset contains 4 columns, one for the year, and 3 for each satellite and the value that it recorded at a point during the year. An example of data that is in this dataset is: A capture during the year 2020 by the Jason-3 satellite is a change of 140.61mm. \\
+
+    We have cleaned this CSV dataset by calculating the mean sea level change for each year instead of having multiple captures for one year, putting all the satellite data together, and using this data we can predict the change in future years. We created a new CSV file called data\_predictions.csv that contains two columns for the year and the corresponding sea level, including the values we predicted with our Theil-Sen regression model.  \\
+
+    Another dataset we have used is Vancouver elevation data from the Government of Canada topographic information section of the website. It is an asc file called elevation\_data.asc (but we can easily read it as a .txt file) that contains elevation measurements (in metres) based on a selected area of the Vancouver region we are analyzing. The value 0 in this dataset represents the elevation at sea level. We can compare this elevation data to the sea level data so that we can determine flooding susceptibility. This data was interpreted into a grid of latitude and longitude values through calculations which allowed us to plot the data points into a plotly mapbox. \\
+
+    After interpreting this DSM data, the program will create a new CSV file called below\_sea\_level.csv which contains all of the points which are below the given sea level for a certain year. This file contains 3 columns, latitude, longitude, and elevation. \\
+
+    The program also creates a dataset named sarimax\_model\_data.csv, necessary for displaying the SARIMAX prediction model. This dataset has two columns, year (contains dates as datetime.datetime objects) and the mean\_sea\_level predicted by that model.
+
+
+    \section*{Computational Plan}
+    \hspace{\parindent}
+
+
+    \section*{Program Instructions}
+    Before the program can be run, there are 2 necessary datasets to download:
     \begin{itemize}
-        \item 1. After downloading please rename this file to “vancouver\_surface\_elevation.asc”
-        \item 2. Place it in the project directory (no subfolders)
+        \item Vancouver\_surface\_elevation.asc (dataset containing the elevation for the vancouver area on a grid) from
+        \href{https://drive.google.com/file/d/1pCJPV3rH0k5obd4s5SHKsn5q8E2FqlKg/view?usp=sharing}{CLICK TO DOWNLOAD}
+        \begin{itemize}
+            \item 1. After downloading please rename this file to “elevation\_data.asc”
+            \item 2. Place it in the project directory (no subfolders)
+        \end{itemize}
+        \item Pacificocean\_sea\_level.csv (dataset containing satellite sea level rise measures) from
+        \href{https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/slr/slr_sla_np_keep_txj1j2.csv}{CLICK TO DOWNLOAD}
+        \begin{itemize}
+            \item 1. After downloading please name this file to “pacificocean\_sea\_level.csv”
+            \item 2. Again, place it in the project directory (no subfolders)
+        \end{itemize}
     \end{itemize}
-    \item Pacificocean\_sea\_level.csv (dataset containing satellite sea level rise measures) from
-    \href{https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/slr/slr_sla_np_keep_txj1j2.csv}{CLICK TO DOWNLOAD}
-    \begin{itemize}
-        \item 1. After downloading please name this file to “pacificocean\_sea\_level.csv”
-        \item 2. Again, place it in the project directory (no subfolders)
-    \end{itemize}
-\end{itemize}
 
-After downloading the relevant datasets, please install the necessary python modules from requirements.txt (\textbf{Important}: requirement.txt installs numpy 1.19.3 because the latest version raises an error on some devices. If you are getting a windows runtime error when using numpy please make sure the correct version is installed).
-Then, run the main.py file and click on the link displayed in the console output. \\
-\begin{figure}[h]
-\centering 
-\includegraphics[width=300pt]{console.png}
-\caption{Console Output}
-\end{figure} 
+    After downloading the relevant datasets, please install the necessary python modules from requirements.txt (\textbf{Important}: requirement.txt installs numpy 1.19.3 because the latest version raises an error on some devices. If you are getting a windows runtime error when using numpy please make sure the correct version is installed).
+    Then, run the main.py file and click on the link displayed in the console output. \\
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=300pt]{console.png}
+        \caption{Console Output}
+    \end{figure}
 
-This will take you to the Dash webpage we created where you can view and interact with the visualizations. Our main interaction is being able to adjust the slider underneath the map we created to see how the data points change overtime, or with a predetermined sea level input. \\
-\begin{figure}[h]
-\centering 
-\includegraphics[width=300pt]{frontend.png}
-\caption{Front-end Output}
-\end{figure}
- 
+    This will take you to the Dash webpage we created where you can view and interact with the visualizations. Our main interaction is being able to adjust the 2 sliders underneath the map we created to see how the data points change at a specific year, or with a predetermined sea level input. \\
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=300pt]{frontend.png}
+        \caption{Front-end Output}
+    \end{figure}
 
-\section*{Project Changes}
- 
-\section*{Discussion}
-\hspace{\parindent}Our computational exploration does a sufficient job in answering which coastal areas in Vancouver are the most susceptible for flooding 280 years into the future. This is displayed by our mapbox visualization and data interpretation of the annual mean sea level changes. If we move the slider all the way to 2300, we can see which areas are going to be the most impacted, due to the greater frequency of data points which are below sea level.  By analyzing this map we see that the most heavily impacted areas are the coastlines around Richmond, Delta, and Surrey, due to their lower elevations. \\
 
-Additionally, our graphical models display the changes in sea levels over the years. We can see that there is a positively increasing trend, which means that due to the increasing temperatures in our climate the sea levels are in fact beginning to rise. Our predicted model shows how high the changes will be in the future, urging us as Earth’s inhabitants to take action in order to minimize this trend. \\
+    \section*{Project Changes}
+    \hspace{\parindent}Based on the feedback received from our proposal, we have made some minor changes to our project plan to streamline the process. For example we realized the vagueness of our original research question and thus adjusted it to be more focused by specifying a certain time period to analyze. We also realized the repetitiveness in only performing a linear regression calculation on our data seeing as we have done the same thing on Assignment 1. After this was brought to our attention, we looked into other methods to model our calculated data and decided on a Theil-Sen regression and SARIMAX prediction model. The Theil-Sen regression is what determines our predictions but the SARIMAX model provides a nice moving average prediction model for visualization. We also realized the complexity of having a dropdown menu and other forms of interactive output, due to our limited expertise in front-end development. We stuck to having 2 sliders, one for the year and one for the sea level and a color bar which determines flood severity based on elevation.
 
-One of the main limitations was with finding an appropriate dataset for the sea level changes. It was very hard to find a dataset that was in a format that would be easily interpreted by our program, hence the many data filtrations/transformations we needed to apply to this dataset. It was also hard to find a dataset that dates back to an earlier year in the past, as in earlier than 1992.  This affects our prediction model because the model was trained over a shorter period of time, so the projected trend may be less extreme than it is in reality. \\
 
-Another limitation was with the plotly library, some of the functions were difficult to use because some parameters for our figures wouldn’t work as desired or described in the documentations, so we needed to research workarounds for these issues using other functions, which consumed a lot of time of the project. However, researching documentations for modules and seeking solutions for errors online is very typical in a software engineering environment, so it was good for us to get this experience. We used dash to display our plotly figures, the main challenge from this was dealing with the front end components. Since we are not experienced with front end development it was quite difficult to work with the dash framework, which results in a mediocre. However, we still made an effort to research how to work with this framework and were able to  implement a slider which provides an interactive experience with our figures. \\
+    \section*{Discussion}
+    \hspace{\parindent}Our computational exploration does a sufficient job in answering which coastal areas in Vancouver are the most susceptible for flooding 280 years into the future. This is displayed by our mapbox visualization and data interpretation of the annual mean sea level changes. If we move the slider all the way to 2300, we can see which areas are going to be the most impacted, due to the greater frequency of data points which are below sea level. By analyzing this map we see that the most heavily impacted areas are the coastlines around Richmond, Delta, and Surrey, due to their lower elevations. With the second slider, the user can select a predetermined sea level and see which areas will be affected with that particular sea level. \\
 
-The main obstacle we faced in designing this program was implementing the prediction model algorithm. This was difficult because it was hard to find a model that was appropriate for our situation. We also wanted to implement this algorithm without as much help from an external library as possible, to increase the complexity of our calculations. We used a Theil-Sen regression to determine the predicted sea levels, but also have a SARIMAX prediction model for a more complex prediction visualization. \\
+    Additionally, our graphical models display the changes in sea levels over the years. We can see that there is a positively increasing trend, which means that due to the increasing temperatures in our climate the sea levels are in fact beginning to rise. Our predicted model shows how high the changes will be in the future, urging us as Earth’s inhabitants to take action in order to minimize this trend. \\
 
-The next steps for our exploration would be to incorporate temperature data as well for a stronger analysis. If we displayed figures with temperature against sea level rise we would be able to see the relationship between climate change and sea level rise directly, rather than assuming it as background knowledge. If we used the relationship between global temperature change and sea level change to train our prediction model rather than sea level change and time, maybe our model would have been more accurate. \\
+    One of the main limitations was with finding an appropriate dataset for the sea level changes. It was very hard to find a dataset that was in a format that would be easily interpreted by our program, hence the many data filtrations/transformations we needed to apply to this dataset. It was also hard to find a dataset that dates back to an earlier year in the past, as in earlier than 1992. This affects our prediction model because the model was trained over a shorter period of time, so the projected trend may be less extreme than it is in reality. \\
 
-In conclusion, our computational exploration allows us to see the coastal areas in the Vancouver region most susceptible to flooding up to 280 years into the future, due to our trained prediction model computations, data interpretations, and geographical visualizations, despite the challenges and limitations faced. 
+    Another limitation was with the plotly library, some of the functions were difficult to use because some parameters for our figures wouldn’t work as desired or described in the documentations, so we needed to research workarounds for these issues using other functions, which consumed a lot of time of the project. However, researching documentations for modules and seeking solutions for errors online is very typical in a software engineering environment, so it was good for us to get this experience. We used dash to display our plotly figures, the main challenge from this was dealing with the front end components. Since we are not experienced with front end development it was quite difficult to work with the dash framework, which results in a mediocre. However, we still made an effort to research how to work with this framework and were able to implement a slider which provides an interactive experience with our figures. \\
 
- 
-\section*{References}
-\begin{hangparas}{.25in}{1}
-Canada, N. (2020, October 16). Government of Canada. Retrieved November 06, 2020, from \\ https://www.nrcan.gc.ca/topographic-information/10785 \\
+    The main obstacle we faced in designing this program was implementing the prediction model algorithm. This was difficult because it was hard to find a model that was appropriate for our situation. We also wanted to implement this algorithm without as much help from an external library as possible, to increase the complexity of our calculations. We used a Theil-Sen regression to determine the predicted sea levels, but also have a SARIMAX prediction model for a more complex prediction visualization. \\
 
-Dash Documentation & User Guide. (n.d.). Retrieved December 13, 2020, from https://dash.plotly.com/ \\
+    The next steps for our exploration would be to incorporate temperature data as well for a stronger analysis. If we displayed figures with temperature against sea level rise we would be able to see the relationship between climate change and sea level rise directly, rather than assuming it as background knowledge. If we used the relationship between global temperature change and sea level change to train our prediction model rather than sea level change and time, maybe our model would have been more accurate. \\
 
-Explainer: How climate change is accelerating sea level rise. (2019, September 30). Retrieved November 05, 2020, from https://www.carbonbrief.org/explainer-how-climate-change-is-accelerating-sea-level-rise \\
+    In conclusion, our computational exploration allows us to see the coastal areas in the Vancouver region most susceptible to flooding up to 280 years into the future, due to our trained prediction model computations, data interpretations, and geographical visualizations, despite the challenges and limitations faced.
 
-Kulp, S., & Strauss, B. (2019, October 29). New elevation data triple estimates of global vulnerability to sea-level rise and coastal flooding. Retrieved November 05, 2020, from https://www.nature.com/articles/s41467-019-12808-z \\
 
-Laboratory for Satellite Altimetry / Sea Level Rise. (n.d.).
-Retrieved November 06, 2020, from \\ https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/LSA_SLR_timeseries.php \\
+    \section*{References}
+    \begin{hangparas}{.25in}{1}
+        Canada, N. (2020, October 16). Government of Canada. Retrieved November 06, 2020, from \\ https://www.nrcan.gc.ca/topographic-information/10785 \\
 
-Little, S. (2019, November 01). Sea level rise may be '3 times worse' than expected. Here's how it could impact Metro Vancouver. Retrieved November 05, 2020, from https://globalnews.ca/news/6102304/sea-level-rise-metro-vancouver/\\
+        Dash Documentation & User Guide. (n.d.). Retrieved December 13, 2020, from https://dash.plotly.com/ \\
 
-(n.d.). Retrieved December 13, 2020, from https://numpy.org/doc/ \\
+        Explainer: How climate change is accelerating sea level rise. (2019, September 30). Retrieved November 05, 2020, from https://www.carbonbrief.org/explainer-how-climate-change-is-accelerating-sea-level-rise \\
 
-Pandas. (n.d.). Retrieved December 13, 2020, from https://pandas.pydata.org/ \\
+        Kulp, S., & Strauss, B. (2019, October 29). New elevation data triple estimates of global vulnerability to sea-level rise and coastal flooding. Retrieved November 05, 2020, from https://www.nature.com/articles/s41467-019-12808-z \\
 
-Plotly Python Graphing Library. (n.d.). Retrieved November 05, 2020, from https://plotly.com/python/ \\
+        Laboratory for Satellite Altimetry / Sea Level Rise. (n.d.).
+        Retrieved November 06, 2020, from \\ https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/LSA_SLR_timeseries.php \\
 
-Report: Flooded Future: Global vulnerability to sea level rise worse than previously understood. (2019, October 29). Retrieved November 06, 2020, from https://www.climatecentral.org/news/report-flooded-future-global-vulnerability-to-sea-level-rise-worse-than-previously-understood \\
+        Little, S. (2019, November 01). Sea level rise may be '3 times worse' than expected. Here's how it could impact Metro Vancouver. Retrieved November 05, 2020, from https://globalnews.ca/news/6102304/sea-level-rise-metro-vancouver/\\
 
-Rising Sea Levels Threaten to Flood Southern Vietnam by 2100. (n.d.). Retrieved December 13, 2020, from https://www.voanews.com/east-asia-pacific/rising-sea-levels-threaten-flood-southern-vietnam-2100 \\
+        (n.d.). Retrieved December 13, 2020, from https://numpy.org/doc/ \\
 
-SciPy. (n.d.). Retrieved December 13, 2020, from
-https://docs.scipy.org/doc/scipy/reference/ \\
+        Pandas. (n.d.). Retrieved December 13, 2020, from https://pandas.pydata.org/ \\
 
-Vancouver has the highest population density in Canada: Census. (2017, December 28). Retrieved November 05, 2020, from https://biv.com/article/2017/02/vancouver-has-highest-population-density-canada-ce 
+        Plotly Python Graphing Library. (n.d.). Retrieved November 05, 2020, from https://plotly.com/python/ \\
 
-\end{hangparas}
+        Report: Flooded Future: Global vulnerability to sea level rise worse than previously understood. (2019, October 29). Retrieved November 06, 2020, from https://www.climatecentral.org/news/report-flooded-future-global-vulnerability-to-sea-level-rise-worse-than-previously-understood \\
+
+        Rising Sea Levels Threaten to Flood Southern Vietnam by 2100. (n.d.). Retrieved December 13, 2020, from https://www.voanews.com/east-asia-pacific/rising-sea-levels-threaten-flood-southern-vietnam-2100 \\
+
+        SciPy. (n.d.). Retrieved December 13, 2020, from
+        https://docs.scipy.org/doc/scipy/reference/ \\
+
+        Vancouver has the highest population density in Canada: Census. (2017, December 28). Retrieved November 05, 2020, from https://biv.com/article/2017/02/vancouver-has-highest-population-density-canada-ce
+
+    \end{hangparas}
 
 
 \end{document}
