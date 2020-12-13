@@ -6,6 +6,7 @@ This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 from typing import List, Tuple, Dict
 import csv
+import warnings
 
 import python_ta
 from python_ta import contracts
@@ -13,14 +14,13 @@ from python_ta import contracts
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-
 # New imports 12/13/2020, commented ones are not needed to run
 # import math
 # import matplotlib.pylab as plt
 # from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 # from statsmodels.tsa.seasonal import seasonal_decompose
-import warnings
+
 warnings.filterwarnings("ignore")
 
 

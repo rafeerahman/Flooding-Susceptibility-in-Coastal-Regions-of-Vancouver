@@ -132,7 +132,8 @@ def decimal_year_to_datetime(decimal_year: float) -> datetime.date:
     rem = start - year
 
     base = datetime(year, 1, 1)
-    result = base + timedelta(seconds=(base.replace(year=base.year + 1) - base).total_seconds() * rem)
+    result = base + timedelta(
+        seconds=(base.replace(year=base.year + 1) - base).total_seconds() * rem)
     date = result.date()
 
     return date.replace(day=1)
