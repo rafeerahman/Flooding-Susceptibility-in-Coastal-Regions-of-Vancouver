@@ -13,7 +13,7 @@ from scipy.stats import linregress
 def process_file() -> Tuple[int, List[float]]:
     """Return the new values to add to the file
     """
-    # Predict until 2100
+    # Predict until 2300
     years = 2301
     x_data = []
     y_data = []
@@ -33,6 +33,11 @@ def process_file() -> Tuple[int, List[float]]:
 def linear_regression(x_coords: list, y_coords: list) -> list:
     """
     returns slope, intercept, correlation coefficient, [p value]
+
+    Preconditions:
+        - x_coords != []
+        - y_coords != []
+
     """
 
     slope, intercept, correlation, pval, error = linregress(x_coords, y_coords)
