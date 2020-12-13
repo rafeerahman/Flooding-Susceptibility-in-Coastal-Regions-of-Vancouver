@@ -1,5 +1,7 @@
 """
 Theil-Sen Regression Calculation for Points
+
+This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 
 import statistics
@@ -44,7 +46,7 @@ def theil_sen_linear_model(x_cords: list, y_cords: list) -> Tuple[float, float]:
     points and calculates the y intercept of the model as well.
     """
     list_of_slopes = []
-    for x in range(len(x_cords)-1):
+    for x in range(len(x_cords) - 1):
         slope = (y_cords[x + 1] - y_cords[x]) / (x_cords[x + 1] - x_cords[x])
         list_of_slopes.append(slope)
 
