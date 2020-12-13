@@ -110,7 +110,7 @@ def update_map(value: float) -> any:
     row_id = df.index[df['year'] == value].tolist()
     val = df.loc[row_id[0]]['mean_sea_level']
     sea_level = val / 1000  # convert mm to m
-    run_file('vancouver_surface_elevation.asc', sea_level)
+    run_file('elevation_data.asc', sea_level)
     return display_map()
 
 

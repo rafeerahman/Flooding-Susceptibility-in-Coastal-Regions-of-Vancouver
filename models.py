@@ -12,6 +12,7 @@ from python_ta import contracts
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+import csv
 
 
 ################
@@ -80,12 +81,35 @@ def display_map() -> go.Figure():
         ).data[0]
     )
     fig.update_layout(mapbox_style='open-street-map',
-                      mapbox={'center': go.layout.mapbox.Center(lat=49.2500,
-                                                                lon=-123.1000), 'zoom': 10})
+                      mapbox={'center': go.layout.mapbox.Center(lat=mean_coords()[0],
+                                                                lon=mean_coords()[1]), 'zoom': 10})
     fig.update_layout(margin={'r': 0, 't': 0, 'l': 0, 'b': 0})
     fig.update_coloraxes(colorscale='RdBu')
 
     return fig
+
+
+def mean_coords() -> Tuple[float, float]:
+    """
+    Returns the average latitude and longitude of points contained in below_sea_level.csv
+    """
+    lat_total = 0
+    long_total = 0
+    cnt = 0
+    with open('below_sea_level.csv') as file:
+        reader = csv.reader(file)
+
+        # skip header
+        next(reader)
+
+        # accumulate each row
+        for row in reader:
+            lat_total += float(row[0])
+            long_total += float(row[1])
+            cnt += 1
+
+    # return the average
+    return (lat_total / cnt, long_total/cnt)
 
 
 if __name__ == '__main__':

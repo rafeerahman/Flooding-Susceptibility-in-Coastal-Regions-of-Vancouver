@@ -27,15 +27,6 @@ def run_file(filepath: str, sea_level_change: float) -> None:
     write_to_csv(below_sea_level)
 
 
-def test() -> None:
-    """
-    Remove in final version
-    """
-    file_name = 'vancouver_surface_elevation.asc'
-    sea_level_rise = 6.9
-    run_file(file_name, sea_level_rise)
-
-
 def read_asc(filepath: str) -> List[List[float]]:
     """
     Reads DSM elevation data in the .asc format as given by the
