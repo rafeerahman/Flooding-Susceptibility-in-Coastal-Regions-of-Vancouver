@@ -141,9 +141,6 @@ def decimal_year_to_datetime(decimal_year: float) -> datetime.date:
 
 # if __name__ == '__main__':
 #     python_ta.check_all(config={
-#         'extra-imports': ['csv', 'typing', 'math', 'theilsen'],  # the names (strs) of imported modules
-#         'allowed-io': ['means_to_csv',
-#                        'read_csv_data', 'predict_data'],  # the names (strs) of functions that call print/open/input
 #         'max-line-length': 100,
 #         'disable': ['R1705', 'C0200']
 #

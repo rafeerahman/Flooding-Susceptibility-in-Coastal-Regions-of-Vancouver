@@ -46,16 +46,25 @@
 
     A major computation performed by our program to transform this new data is seen in the \texttt{group\_means()} function. This function iterates through this new dictionary, extracting the years from each satellite and computing the means, resulting in a newly formatted dictionary by mutation done by the helper function \texttt{remove\_dupes()} with the years as the keys mapping to the mean sea level for that year. This condenses our original pacificocean\_sea\_level.csv into a simpler, summarized dataset. The program will write our transformed data into a new csv called predicted\_data.csv for pandas compatibility later on which is done through the usage of csv module and indexing, formatting. \\
 
-    The most important data processing is seen in the canada\_dsm.py file. This file interprets the elevation\_data.asc file into latitude and longitude points which will be plotted into our map visualization. This file achieves this mainly through the \texttt{assign\_coords()} function. The original elevation\_data.asv file contains values for the number of rows, columns, latitude of the bottommost coordinate, longitude of the leftmost coordinate, and the cell size. Using these initial values, we can use a nested for loop and some calculations to interpret each elevation into a latitude and longitude coordinate, based on its position in an ascii grid.
+    The most important data processing is seen in the canada\_dsm.py file. This file interprets the elevation\_data.asc file into latitude and longitude points which will be plotted into our map visualization. This file achieves this mainly through the \texttt{assign\_coords()} function. The original elevation\_data.asv file contains values for the number of rows, columns, latitude of the bottommost coordinate, longitude of the leftmost coordinate, and the cell size. Using these initial values, we can use a nested for loop and some calculations to interpret each elevation into a latitude and longitude coordinate, based on its position in an ascii grid. \\
+
+    \textbf{Part 3: Reporting Results}
+
+    \hspace{\parindent}As described in the introduction, the main form of reporting takes the form of an interactive map of the Vancouver area. Based on the extrapolated values we computed, the user of our program is able to move a slider to select a year and the extrapolated results will be displayed on a map. There is also another slider which allows the user to select a sea level and see which areas are going to be affected by that selected sea level. The dash framework allowed us to establish an interactive front-end visualization, using HTML and dash core components to program a dynamic slider. \\
+
+    To determine which points are below the given sea level, we have the \texttt{check\_elevation()} function in the canada\_dsm.py file. This function creates a nested list containing the latitude, longitude, and elevation $-$ sea\_level which are below the given sea level, by checking if the elevation is less than the sea level with a while loop. These values are then written to a csv file called below\_sea\_level.csv, which is used as the dataset for our \texttt{display\_map()} function in models.py. \\
+
+    The map is displayed using plotly’s mapbox visualization object. First, we can use pandas to convert this new csv file into a pandas dataframe with \texttt{pd.read\_csv("below\_sea\_level.csv")} which makes it easier to use with plotly’s mapbox. By importing plotly.express we used \texttt{px.scatter\_mapbox()} and passed in the necessary parameters to display these coordinates that are below the sea level. \\
+
+    To create our graphical visualizations, we used plotly’s \textt{go.scatter()}, and \textt{add\_trace()} to display the points necessary for our regular model and predictive models.
 
     \section*{Program Instructions}
     Before the program can be run, there are 2 necessary datasets to download:
     \begin{itemize}
         \item elevation\_data.asc (dataset containing the elevation for the vancouver area on a grid) from
-        \href{https://drive.google.com/file/d/1pCJPV3rH0k5obd4s5SHKsn5q8E2FqlKg/view?usp=sharing}{CLICK TO DOWNLOAD}
+        \href{https://drive.google.com/file/d/1WTpvDGTbbd-y1P-TbWe_gyFAXLlJWBnU/view?usp=sharing}{CLICK TO DOWNLOAD}
         \begin{itemize}
-            \item[1.] After downloading please rename this file to “elevation\_data.asc”
-            \item[2.] Place it in the project directory (no subfolders)
+            \item[1.] Place it in the project directory (no subfolders)
         \end{itemize}
         \item Pacificocean\_sea\_level.csv (dataset containing satellite sea level rise measures) from
         \href{https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/slr/slr_sla_np_keep_txj1j2.csv}{CLICK TO DOWNLOAD}
@@ -108,7 +117,7 @@
         Bhattiprolu, Sreenivas. “163 - An Introduction to Time Series Forecasting - Part 3 Using ARIMA in Python.” YouTube,
         YouTube, 1 Oct. 2020, www.youtube.com/watch?v=TSfdvQ0ARwI \\
 
-        Brownlee, Jason. How to Create an ARIMA Model for Time Series Forecasting in Python, 9 Jan. 2017,
+        Brownlee, Jason. How to Create an ARIMA Model for Time Series Forecasting in Python, 9 Jan. 2017, \\
         http://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/ \\
 
         Dash Documentation & User Guide. (n.d.). Retrieved December 13, 2020, from https://dash.plotly.com/ \\
@@ -118,7 +127,7 @@
         Kulp, S., & Strauss, B. (2019, October 29). New elevation data triple estimates of global vulnerability to sea-level rise and coastal flooding. Retrieved November 05, 2020, from https://www.nature.com/articles/s41467-019-12808-z \\
 
         Laboratory for Satellite Altimetry / Sea Level Rise. (n.d.).
-        Retrieved November 06, 2020, from \\ https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/LSA_SLR_timeseries.php \\
+        Retrieved November 06, 2020, from \\ https://www.star.nesdis.noaa.gov/socd/lsa/SeaLevelRise/LSA\_SLR\_timeseries.php \\
 
         Little, S. (2019, November 01). Sea level rise may be '3 times worse' than expected. Here's how it could impact Metro Vancouver. Retrieved November 05, 2020, from https://globalnews.ca/news/6102304/sea-level-rise-metro-vancouver/\\
 

@@ -251,8 +251,6 @@ def mean_coords() -> Tuple[float, float]:
 
 if __name__ == '__main__':
     python_ta.check_all(config={
-        'extra-imports': ['numpy', 'plotly.express',
-                          'plotly.graph_objects', 'pandas'],
         'max-line-length': 100,
         'disable': ['R1705', 'C0200']
 
