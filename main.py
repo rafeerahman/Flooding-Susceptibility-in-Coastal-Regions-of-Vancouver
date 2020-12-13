@@ -22,8 +22,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 from data_cleaning import read_csv_data, group_means, means_to_csv
-from prediction_model import display_graph, display_annual_mean
-from map_visualization import display_map
+from models import display_graph, display_annual_mean, display_map
 from dash.dependencies import Input, Output
 from canada_dsm import run_file
 

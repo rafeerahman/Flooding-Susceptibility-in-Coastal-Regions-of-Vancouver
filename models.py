@@ -1,7 +1,6 @@
 """
-Modelling the data with a regression,
-displaying a line graph showing the change in sea level rise over the years,
-and displaying predicted values for 20 years into the future.
+Modelling the data with graphs and a map
+which shows the susceptible flooding regions - includes interactive features
 
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
@@ -15,9 +14,9 @@ import plotly.graph_objects as go
 import pandas as pd
 
 
-##########
-# DISPLAY
-##########
+################
+# DISPLAY GRAPHS
+################
 def display_graph(data: Dict[str, List[Tuple]]) -> go.Figure():
     """Return a graph of the sea level change over the years.
     NOT a predictive model
@@ -52,6 +51,39 @@ def display_annual_mean(data: str) -> go.Figure():
     fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1992 - 2020)',
                       xaxis_title='Year',
                       yaxis_title='Average Change in Sea Level (mm)')
+
+    return fig
+
+
+#############
+# DISPLAY MAPS
+#############
+def display_map() -> go.Figure():
+    """Displays the map of the given data
+    """
+    # Main point - Vancouver latitude and longitude
+    fig = px.scatter_mapbox(lat=[49.2500], lon=[-123.1000],
+                            color_discrete_sequence=['fuchsia'], zoom=3)
+
+    df = pd.read_csv('below_sea_level.csv')
+
+    fig.add_trace(
+        px.scatter_mapbox(
+            df,
+            title='Map of Vancouver Indicating Flood Regions',
+            lat='lat',
+            lon='long',
+            color="elevation",
+            color_discrete_sequence=['blue'],
+            opacity=0.1,
+            zoom=3
+        ).data[0]
+    )
+    fig.update_layout(mapbox_style='open-street-map',
+                      mapbox={'center': go.layout.mapbox.Center(lat=49.2500,
+                                                                lon=-123.1000), 'zoom': 10})
+    fig.update_layout(margin={'r': 0, 't': 0, 'l': 0, 'b': 0})
+    fig.update_coloraxes(colorscale='RdBu')
 
     return fig
 
