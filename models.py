@@ -195,7 +195,7 @@ def display_map() -> go.Figure():
     """
     # Main point - Vancouver latitude and longitude
     fig = px.scatter_mapbox(lat=[49.2500], lon=[-123.1000],
-                            color_discrete_sequence=['fuchsia'], zoom=3, height=1350)
+                            color_discrete_sequence=['fuchsia'], zoom=3, height=750)
 
     df = pd.read_csv('below_sea_level.csv')
 

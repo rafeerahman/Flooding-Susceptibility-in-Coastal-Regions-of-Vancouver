@@ -24,7 +24,7 @@ import pandas as pd
 from data_cleaning import read_csv_data, group_means, means_to_csv, data_to_datetime_csv
 from models import display_graph, display_annual_mean, display_map, predicted_sea_level
 from dash.dependencies import Input, Output
-from canada_dsm import run_file, write_to_csv
+from canada_dsm import run_file
 
 
 # Create the datasets & Call computing functions
@@ -74,13 +74,14 @@ app.layout = html.Div([
                 children=[
                     html.Div([
                         dcc.Graph(id='map_plot'),
-                        dcc.Slider(
-                            id='year_slider',
-                            min=2020,
-                            max=2300,
-                            step=1,
-                            marks={year: str(year) for year in range(2020, 2320, 20)}, value=2020,
-                        ),
+                        html.Div([
+                            dcc.Slider(
+                                id='year_slider',
+                                min=2020,
+                                max=2300,
+                                step=1,
+                                marks={year: str(year) for year in range(2020, 2320, 20)}, value=2020,
+                            )], style={'margin-top': '15px'}),
                         dcc.Slider(
                             id='sea_level_slider',
                             min=0,
@@ -110,7 +111,7 @@ app.layout = html.Div([
                         # style={'padding-right': 40}
                     ),
 
-                ])
+                ], style={"maxHeight": "800px", "overflow": "scroll"})
             )
         ]
     )
