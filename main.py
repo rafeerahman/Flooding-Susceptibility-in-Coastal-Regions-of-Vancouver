@@ -21,9 +21,9 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
+from dash.dependencies import Input, Output
 from data_cleaning import read_csv_data, group_means, means_to_csv, data_to_datetime_csv
 from models import display_graph, display_annual_mean, display_map, predicted_sea_level
-from dash.dependencies import Input, Output
 from canada_dsm import run_file
 
 
@@ -122,7 +122,7 @@ app.layout = html.Div([
 @app.callback(Output('map_plot', 'figure'),
               Input('year_slider', 'value'),
               Input('sea_level_slider', 'value'))
-def update_map(year, sea_level) -> any:
+def update_map(year: int, sea_level: float) -> any:
     """
     Updates the map based on the value of the most recently used slider
     """
@@ -130,16 +130,20 @@ def update_map(year, sea_level) -> any:
 
     # run on start-up or if year_slider is used
     if ctx.triggered[0]['prop_id'] == '.' or ctx.triggered[0]['prop_id'] == 'year_slider.value':
-        # run_file() function will call other computation functions
-        df = pd.read_csv('data_predictions.csv')
-        row_id = df.index[df['year'] == year].tolist()
-        val = df.loc[row_id[0]]['mean_sea_level']
-        sea_level = val / 1000  # convert mm to m
+
+        # get the predicted mean sea level at a given year in mm and convert to m
+        predictions = pd.read_csv('data_predictions.csv')
+        row_id = predictions.index[predictions['year'] == year].tolist()
+        val = predictions.loc[row_id[0]]['mean_sea_level']
+        sea_level = val / 1000
+
+        # run_file() function will call other computation functions in canada_dsm.py
         run_file('elevation_data.asc', sea_level)
 
     # run if sea_level_slider is used
     else:
         run_file('elevation_data.asc', sea_level)
+
     return display_map()
 
 

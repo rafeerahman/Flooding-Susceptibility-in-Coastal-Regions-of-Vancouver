@@ -5,6 +5,7 @@ which shows the susceptible flooding regions - includes interactive features
 This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 from typing import List, Tuple, Dict
+import csv
 
 import python_ta
 from python_ta import contracts
@@ -12,7 +13,6 @@ from python_ta import contracts
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-import csv
 
 # New imports 12/13/2020, commented ones are not needed to run
 # import math
@@ -197,6 +197,7 @@ def display_map() -> go.Figure():
     fig = px.scatter_mapbox(lat=[49.2500], lon=[-123.1000],
                             color_discrete_sequence=['fuchsia'], zoom=3, height=750)
 
+    # add points that are at risk of flooding
     df = pd.read_csv('below_sea_level.csv')
 
     fig.add_trace(
@@ -211,6 +212,8 @@ def display_map() -> go.Figure():
             zoom=3
         ).data[0]
     )
+
+    # set map style
     fig.update_layout(mapbox_style='open-street-map',
                       template='plotly_dark',
                       mapbox={'center': go.layout.mapbox.Center(lat=mean_coords()[0],
@@ -241,7 +244,7 @@ def mean_coords() -> Tuple[float, float]:
             cnt += 1
 
     # return the average
-    return (lat_total / cnt, long_total/cnt)
+    return (lat_total / cnt, long_total / cnt)
 
 
 if __name__ == '__main__':

@@ -5,8 +5,8 @@ This file is Copyright (c) 2020 Lorena Buciu, Rafee Rahman, Kevin Yang, Ricky Yi
 """
 
 from typing import List, Tuple
-import numpy as np
 import csv
+import numpy as np
 
 
 def run_file(filepath: str, sea_level_change: float) -> None:
@@ -77,9 +77,12 @@ def check_elevation(data: List[Tuple[float, float, float]], sea_level_change: fl
     """
     list_so_far = []
     i = 0
+
+    # accumulate points below sea level with latitude, longitude, and new elevation
     while data[i][0] < sea_level_change and i < len(data) - 1:
         list_so_far.append([data[i][1], data[i][2], data[i][0] - sea_level_change])
         i += 1
+
     return list_so_far
 
 
@@ -87,6 +90,7 @@ def clear_csv() -> None:
     """
     Clear the below_sea_level.csv file
     """
+    # opens the csv and truncates it to size 0
     file = open('below_sea_level.csv', 'r+')
     file.truncate(0)
     file.close()
