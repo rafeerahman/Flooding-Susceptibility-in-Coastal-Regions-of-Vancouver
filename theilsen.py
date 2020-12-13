@@ -40,7 +40,7 @@ def linear_regression(x_coords: list, y_coords: list) -> list:
 
     """
 
-    slope, intercept, correlation, pval, error = linregress(x_coords, y_coords)
+    slope, intercept, correlation, _, _ = linregress(x_coords, y_coords)
     return [slope, intercept, correlation]
 
 
@@ -65,7 +65,6 @@ def projected_values(slope: float, y_int: float, years: int) -> List[float]:
     Returns a list of projected ocean levels based on a Theil-Sen linear model
     """
     final_values = []
-    slope = slope
     for num in range(2021, years + 1):
         projection = slope * num + y_int
         final_values.append(projection)
