@@ -7,7 +7,7 @@ python-ta
 
 # Graphics and data visualization
 plotly~=4.9.0
-numpy~=1.19.1
+numpy==1.19.3
 pandas~=1.1.0
 dash==1.17.0
 statsmodels

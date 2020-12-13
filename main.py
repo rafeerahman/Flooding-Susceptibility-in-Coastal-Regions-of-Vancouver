@@ -24,7 +24,7 @@ import pandas as pd
 from data_cleaning import read_csv_data, group_means, means_to_csv
 from models import display_graph, display_annual_mean, display_map
 from dash.dependencies import Input, Output
-from canada_dsm import run_file
+from canada_dsm import run_file, write_to_csv
 
 # Create the datasets & Call computing functions
 dataset = read_csv_data("pacificocean_sea_level.csv")
@@ -32,6 +32,10 @@ dataset = read_csv_data("pacificocean_sea_level.csv")
 condensed = group_means(dataset)
 # CREATE data_predictions.csv
 means_to_csv(condensed)
+
+# initialize below sea level file
+df = pd.DataFrame(list())
+df.to_csv('below_sea_level.csv')
 
 external_stylesheets = [
     'https://codepen.io/chriddyp/pen/bWLwgP.css',

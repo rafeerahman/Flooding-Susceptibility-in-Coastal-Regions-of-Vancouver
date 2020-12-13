@@ -49,7 +49,7 @@ def display_annual_mean(data: str) -> go.Figure():
 
     fig = px.scatter(df, x=df['year'], y=df['mean_sea_level'], trendline="ols")
 
-    fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1992 - 2020)',
+    fig.update_layout(title='Mean Sea Level Anomaly in the North Pacific Ocean from (1992 - 2300)',
                       xaxis_title='Year',
                       yaxis_title='Average Change in Sea Level (mm)')
 
