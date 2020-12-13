@@ -60,18 +60,18 @@ app.layout = html.Div([
                     html.Div([
                         dcc.Graph(id='map_plot'),
                         dcc.Slider(
+                            id='year_slider',
+                            min=2020,
+                            max=2300,
+                            step=1,
+                            marks={year: str(year) for year in range(2020, 2320, 20)}, value=2020,
+                        ),
+                        dcc.Slider(
                             id='sea_level_slider',
-                            min=2020,  # -5
-                            max=2300,  # 15
-                            step=1,  # 0.01
-                            marks={year: str(year) for year in range(2020, 2320, 20)}, value=2020
-                            # {
-                            #     -5: '-5',  # -5
-                            #     0: '0',  # 0
-                            #     5: '5',  # 5
-                            #     10: '10',  # 10
-                            #     15: '2100',  # 15
-                            # },
+                            min=0,
+                            max=100,
+                            step=0.001,
+                            marks={num: str(num) + 'm' for num in range(0, 110, 10)}, value=0.071
                         ),
                     ])
                 ]
@@ -96,21 +96,30 @@ app.layout = html.Div([
             )
         ]
     )
-])
+], style={'margin-left': '50px', 'margin-right': '50px'})
 
 
 @app.callback(Output('map_plot', 'figure'),
+              Input('year_slider', 'value'),
               Input('sea_level_slider', 'value'))
-def update_map(value: float) -> any:
+def update_map(year, sea_level) -> any:
     """
-    Updates the map based on sea level change value
+    Updates the map based on the value of the most recently used slider
     """
-    # run_file() function will call other computation functions
-    df = pd.read_csv('data_predictions.csv')
-    row_id = df.index[df['year'] == value].tolist()
-    val = df.loc[row_id[0]]['mean_sea_level']
-    sea_level = val / 1000  # convert mm to m
-    run_file('elevation_data.asc', sea_level)
+    ctx = dash.callback_context
+
+    # run on start-up or if year_slider is used
+    if ctx.triggered[0]['prop_id'] == '.' or ctx.triggered[0]['prop_id'] == 'year_slider.value':
+        # run_file() function will call other computation functions
+        df = pd.read_csv('data_predictions.csv')
+        row_id = df.index[df['year'] == year].tolist()
+        val = df.loc[row_id[0]]['mean_sea_level']
+        sea_level = val / 1000  # convert mm to m
+        run_file('elevation_data.asc', sea_level)
+
+    # run if sea_level_slider is used
+    else:
+        run_file('elevation_data.asc', sea_level)
     return display_map()
 
 
