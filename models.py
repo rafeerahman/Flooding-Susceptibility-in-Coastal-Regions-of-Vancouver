@@ -136,7 +136,7 @@ def predicted_sea_level(file: str) -> go.Figure():
                     order=(1, 1, 0),
                     seasonal_order=(3, 1, 0, 12))
 
-    result = model.fit()
+    result = model.fit(disp=False)
     # print(result.summary())
 
     # Now this model is ready for forecasting
@@ -195,7 +195,7 @@ def display_map() -> go.Figure():
     """
     # Main point - Vancouver latitude and longitude
     fig = px.scatter_mapbox(lat=[49.2500], lon=[-123.1000],
-                            color_discrete_sequence=['fuchsia'], zoom=3, height=1300)
+                            color_discrete_sequence=['fuchsia'], zoom=3, height=1350)
 
     df = pd.read_csv('below_sea_level.csv')
 
