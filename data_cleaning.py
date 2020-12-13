@@ -9,6 +9,7 @@ from typing import Dict, List, Tuple
 import python_ta
 from python_ta import contracts
 from theilsen import process_file
+from datetime import datetime, timedelta
 
 
 ###########
@@ -107,13 +108,43 @@ def predict_data() -> None:
             i += 1
 
 
-if __name__ == '__main__':
-    python_ta.check_all(config={
-        'extra-imports': ['csv', 'typing', 'math', 'theilsen'],  # the names (strs) of imported modules
-        'allowed-io': ['means_to_csv',
-                       'read_csv_data', 'predict_data'],  # the names (strs) of functions that call print/open/input
-        'max-line-length': 100,
-        'disable': ['R1705', 'C0200']
+##################################################################
+# CSV with datetime values instead of decimals, for SARIMAX Forecast Model
+##################################################################
+def data_to_datetime_csv(data: Dict[str, List[Tuple[str, float]]]) -> None:
+    """Convert all keys which are decimal year to a datetime values, and write the key-value pair
+     to a csv file so it can be read by pandas and matplotlab.
+    """
+    with open('Sarimax_Model_Data.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['year', 'mean_sea_level'])
+        for satellite in data:
+            for pair in data[satellite]:
+                writer.writerow([decimal_year_to_datetime(float(pair[0])), pair[1]])
 
-    })
-    python_ta.contracts.check_all_contracts()
+
+# Helper function
+def decimal_year_to_datetime(decimal_year: float) -> datetime.date:
+    """Convert a given decimal date to a datetime value
+    """
+    start = decimal_year
+    year = int(start)
+    rem = start - year
+
+    base = datetime(year, 1, 1)
+    result = base + timedelta(seconds=(base.replace(year=base.year + 1) - base).total_seconds() * rem)
+    date = result.date()
+
+    return date.replace(day=1)
+
+
+# if __name__ == '__main__':
+#     python_ta.check_all(config={
+#         'extra-imports': ['csv', 'typing', 'math', 'theilsen'],  # the names (strs) of imported modules
+#         'allowed-io': ['means_to_csv',
+#                        'read_csv_data', 'predict_data'],  # the names (strs) of functions that call print/open/input
+#         'max-line-length': 100,
+#         'disable': ['R1705', 'C0200']
+#
+#     })
+#     python_ta.contracts.check_all_contracts()

@@ -21,10 +21,11 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
-from data_cleaning import read_csv_data, group_means, means_to_csv
-from models import display_graph, display_annual_mean, display_map
+from data_cleaning import read_csv_data, group_means, means_to_csv, data_to_datetime_csv
+from models import display_graph, display_annual_mean, display_map, predicted_sea_level
 from dash.dependencies import Input, Output
 from canada_dsm import run_file, write_to_csv
+
 
 # Create the datasets & Call computing functions
 dataset = read_csv_data("pacificocean_sea_level.csv")
@@ -32,6 +33,8 @@ dataset = read_csv_data("pacificocean_sea_level.csv")
 condensed = group_means(dataset)
 # CREATE data_predictions.csv
 means_to_csv(condensed)
+
+data_to_datetime_csv(dataset)
 
 # initialize below sea level file
 df = pd.DataFrame(list())
@@ -50,11 +53,19 @@ external_stylesheets = [
 # OUTPUT
 app = dash.Dash(__name__,
                 external_stylesheets=external_stylesheets)
+colors = {
+    'background': '#000000',
+    'text': '#7FDBFF'
+}
 
 app.layout = html.Div([
-
-    html.H1("Flooding Susceptibility in Vancouver Coastal Regions"),
-
+    html.H1(children="Flooding Susceptibility in Vancouver Coastal Regions",
+            style={
+                'color': colors['text'],
+                'fontSize': 28,
+                'paddingTop': 20,
+                'paddingBottom': 20,
+            }),
     html.Div(
         className="row",
         children=[
@@ -85,22 +96,26 @@ app.layout = html.Div([
                 children=html.Div([
                     dcc.Graph(
                         id='right-top-graph',
-                        figure=
-                        display_graph(dataset)
-
+                        figure=display_graph(dataset),
+                        # style={'padding-right': 40}
+                    ),
+                    dcc.Graph(
+                        id='sarimax model',
+                        figure=predicted_sea_level('Sarimax_Model_Data.csv'),
+                        # style={'padding-right': 40}
                     ),
                     dcc.Graph(
                         id='right-bottom-graph',
-                        figure=
-                        display_annual_mean('data_predictions.csv')
-
+                        figure=display_annual_mean('data_predictions.csv'),
+                        # style={'padding-right': 40}
                     ),
 
                 ])
             )
         ]
     )
-], style={'margin-left': '50px', 'margin-right': '50px'})
+], style={'backgroundColor': colors['background'],
+          'padding-left': 50, 'padding-right': 50},)
 
 
 @app.callback(Output('map_plot', 'figure'),
