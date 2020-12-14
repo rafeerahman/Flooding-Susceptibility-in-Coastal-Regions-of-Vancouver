@@ -51,7 +51,29 @@
 
     \hspace{\parindent}In the extrapolation portion of our program, we used a combination of two computational models: Theil-Sen Regression and the SARIMAX Model. The Theil-Sen model first determines the inputs in the final display which is then graphically represented by the Sarimax Model. \\
 
+    \textbf{Theil-Sen Model:}
+
     Theil-Sen regression is similar to linear regression in that it can predict future values over time after determining a line of best fit, but the methodology of finding the line is different. Over the years there have been multiple variations of this model developed and the method we implemented will be described. In this method, the slope between each set of data points (x, y) is calculated and the median of the calculated slopes is taken as the slope of the line which can then be used for a y-intercept calculation. In the file theilsen.py, these operations are done through index based for loops seen in the \texttt{theil\_sen\_linear\_model} function, to calculate each individual slope which is then appended to a list of all slopes. The statistics library’s median function finds the median of the list which is used to calculate the y-intercept, returning a linear equation. \\
+
+    \textbf{Sarima Model:}
+
+    \hspace{\parindent}SARIMA, also known as Seasonal Auto Regressive Integrated Moving Average, is a type of time series model that is used for analyzing and forecasting time series data. The sarima model is similar to ‘AR’, ‘MA’, and ‘ARIMA’ models, and uses the same techniques with some variation. Autoregression means that the model uses a dependent relationship between an observation and lagged observations. Lagged observations are a way that time series models are forecasted. Given a time t, the approach is to predict the value at the next time, t + 1, while given the previous time t - 1. The ‘I’, integrated, is an approach that takes the difference of observations to make the time series data stationary. The ‘MA’, moving average, depends on the observations and the residual errors of a moving average model. In our data visualization, we saw that the sea level anomaly looked seasonal, meaning that at certain periods of time, there is an increase or decrease in sea level, hence why we used SARIMA.  The X at the end of 'SARIMAX' stands for exogenous factors, but we ignored that in our model. \\
+
+    In ARIMA modelling, we use three main arguments. These are known as p, q and d. The p is the number of lags, the d is known as the degree of differencing, and the q is the window/timeframe we are taking the averages from. In statistical practice of ARIMA modelling, we determine whether or not the data is stationary (i.e moving averages are the same). In python, we did this using the Dickey Fuller Test using a built-in function from the statsmodels library called adfuller, which gave us various statistics including the p-value. We also did an ARIMA model simulation to determine the p, q, and d values, using the function auto\_arima from the pmdarima library. In regular statistical practice, to do this test on our own we would look at the autocorrelation, and partial autocorrelation of the data but that was a bit more complex. \\
+
+    To build the SARIMA model, some data extrapolation was done. First, we converted the decimal years to datetime values and wrote them into a new csv file. We also combined the topex and jason satellite data into one. We then condensed the data using pandas, which only took the maximum sea level value for one month and also removed duplicate dates. This made the datetime frequency monthly so that the SARIMA, matplot, and auto arima functions could understand it. In some parts, we used matplotlib which helped visualize the techniques that were required for our prediction such as the residual, trend, seasonality and more. Some of these libraries were commented out of the project because it was not necessary for our final visualization. \\
+
+    The auto arima function gave us the best p, q, and d values for our data that would then be used as arguments for the SARIMA model. With our data being seasonal, there is a fourth argument that we added to the SARIMA function, which is from the statsmodels library. This fourth argument is the length of the cycle/where the pattern occurs. We saw that the data was changing about every 12 months, so we used 12 months as our seasonal cycle. Using the data produced from the SARIMA function, we used training data, and testing data to help our forecast become more accurate. For the training data, we used about 80\% of our actual data to train our model. The rest were used in our testing (actual values). To predict the forecast, we used other functions from the statsmodels library including the predict function, which uses mathematical formulas to predict new values. To predict 30 years, we used the start value for the prediction as the end of our dataframe (2020), and the end value of our prediction was the length of our dataframe (2020) added to 30 * 12, which accounts for 30 years. We then plotted the train data, test data, and predicted data to give us a better visualization. \\
+
+    A lot of the mathematical analyses that were used in the functions we imported from the statsmodels library were a bit beyond our scope, which is why we could not implement them ourselves and relied on the libraries. One example is in the SARIMAX function. This function uses the formulas below (from statsmodels in references).
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=300pt]{sarima_equations.png}
+        \caption{Formula's From Statsmodels Reference}
+    \end{figure}
+
+    \newpage
 
 
     \textbf{Part 3: Reporting Results}
@@ -146,6 +168,8 @@
 
         SciPy. (n.d.). Retrieved December 13, 2020, from
         https://docs.scipy.org/doc/scipy/reference/ \\
+
+        Statsmodels.tsa.statespace.sarimax.SARIMAX Documentation. (n.d.). Retrieved December 14, 2020, from \\ https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html \\
 
         Theil, Henri. “A Rank-Invariant Method of Linear and Polynomial Regression Analysis” Retrieved December 9 2020, https://link.springer.com/chapter/10.1007/978-94-011-2546-8_20 \\
 
