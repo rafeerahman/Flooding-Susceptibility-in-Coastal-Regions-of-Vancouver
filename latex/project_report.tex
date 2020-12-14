@@ -47,6 +47,12 @@
 
     The most important data processing is seen in the \texttt{canada\_dsm.py} file. This file interprets the elevation\_data.asc file into latitude and longitude points which will be plotted into our map visualization. This file achieves this mainly through the \texttt{assign\_coords()} function. The original elevation\_data.asc file contains values for the number of rows, columns, latitude of the bottommost coordinate, longitude of the leftmost coordinate, and the cell size. Using these initial values, we can use a nested for loop and some calculations to interpret each elevation into a latitude and longitude coordinate, based on its position in an ascii grid. \\
 
+    \textbf{Part 2: Extrapolation}
+
+    \hspace{\parindent}In the extrapolation portion of our program, we used a combination of two computational models: Theil-Sen Regression and the SARIMAX Model. The Theil-Sen model first determines the inputs in the final display which is then graphically represented by the Sarimax Model. \\
+
+    Theil-Sen regression is similar to linear regression in that it can predict future values over time after determining a line of best fit, but the methodology of finding the line is different. Over the years there have been multiple variations of this model developed and the method we implemented will be described. In this method, the slope between each set of data points (x, y) is calculated and the median of the calculated slopes is taken as the slope of the line which can then be used for a y-intercept calculation. In the file theilsen.py, these operations are done through index based for loops seen in the \texttt{theil\_sen\_linear\_model} function, to calculate each individual slope which is then appended to a list of all slopes. The statistics library’s median function finds the median of the list which is used to calculate the y-intercept, returning a linear equation. \\
+
 
     \textbf{Part 3: Reporting Results}
 
@@ -140,6 +146,8 @@
 
         SciPy. (n.d.). Retrieved December 13, 2020, from
         https://docs.scipy.org/doc/scipy/reference/ \\
+
+        Theil, Henri. “A Rank-Invariant Method of Linear and Polynomial Regression Analysis” Retrieved December 9 2020, https://link.springer.com/chapter/10.1007/978-94-011-2546-8_20 \\
 
         Vancouver has the highest population density in Canada: Census. (2017, December 28). Retrieved November 05, 2020, from https://biv.com/article/2017/02/vancouver-has-highest-population-density-canada-ce
 
