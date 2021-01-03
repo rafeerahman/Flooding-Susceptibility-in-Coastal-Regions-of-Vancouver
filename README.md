@@ -1,4 +1,4 @@
-# University of Toronto St. George: CSC110Y1 Final Project Project
+# University of Toronto CSC110Y1 Final Project
 Collaborators/Group Members: Lorena Buciu, Kevin Yang, Ricky Yi, Rafee Rahman
 
 Title: The effect of climate change on flooding susceptibility in coastal regions 
